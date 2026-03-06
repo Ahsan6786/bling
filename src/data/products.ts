@@ -618,6 +618,278 @@ export const products: Product[] = [
             origin: "Artisan Studio, India",
             closure: "Butterfly Back"
         }
+    },
+    {
+        id: "57",
+        slug: "whispering-elegance-earrings",
+        name: "Whispering Elegance Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we1.png", "/images/earrings/we1.1.png"],
+        description: "Delicate and understated, these earrings whisper elegance with every movement.",
+        provenance: "Hand-finished to capture the subtle grace of morning sunlight.",
+        specs: {
+            metal: "Gold Toned Finish",
+            stone: "Clear Crystals",
+            origin: "Artisan Studio, India",
+            closure: "Push Back"
+        }
+    },
+    {
+        id: "58",
+        slug: "weavers-grace-earrings",
+        name: "Weaver's Grace Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we2.png", "/images/earrings/we2.1.png"],
+        description: "Intricately woven designs that reflect the timeless skill of master artisans.",
+        provenance: "Inspired by the traditional weaving patterns of Bihar's heritage.",
+        specs: {
+            metal: "Gold Toned Plating",
+            stone: "None",
+            origin: "Artisan Studio, India",
+            closure: "Hinge Clasp"
+        }
+    },
+    {
+        id: "59",
+        slug: "willow-wisp-earrings",
+        name: "Willow Wisp Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we4.png", "/images/earrings/we4.1.png"],
+        description: "Lightweight and ethereal, these earrings dance like willow wisps in the breeze.",
+        provenance: "Designed to evoke the magical atmosphere of an enchanted forest.",
+        specs: {
+            metal: "Rose Gold Toned",
+            stone: "Sparkling Accents",
+            origin: "Artisan Studio, India",
+            closure: "French Wire"
+        }
+    },
+    {
+        id: "60",
+        slug: "white-emerald-earrings",
+        name: "White Emerald Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we6.png", "/images/earrings/we6.1.png"],
+        description: "A stunning combination of white tones and emerald-inspired cuts for ultimate sophistication.",
+        provenance: "Part of our Royal collection, inspired by palace gardens.",
+        specs: {
+            metal: "Silver Toned Finish",
+            stone: "Teardrop Crystals",
+            origin: "Artisan Studio, India",
+            closure: "Butterfly Back"
+        }
+    },
+    {
+        id: "61",
+        slug: "wild-enchantment-earrings",
+        name: "Wild Enchantment Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we7.png", "/images/earrings/we7.1.png"],
+        description: "Bold and untamed, these earrings capture the essence of wild floral beauty.",
+        provenance: "Inspired by the mountain blooms of the North.",
+        specs: {
+            metal: "Gold Toned Finish",
+            stone: "Mixed Stones",
+            origin: "Artisan Studio, India",
+            closure: "Push Back"
+        }
+    },
+    {
+        id: "62",
+        slug: "wonder-eve-earrings",
+        name: "Wonder Eve Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we8.png", "/images/earrings/we8.1.png"],
+        description: "The perfect accessory for a memorable evening, radiating wonder and charm.",
+        provenance: "Crafted to celebrate the magic of special occasions.",
+        specs: {
+            metal: "Gold Toned Plating",
+            stone: "Brilliant Zirconia",
+            origin: "Artisan Studio, India",
+            closure: "Hinge Clasp"
+        }
+    },
+    {
+        id: "63",
+        slug: "winter-embrace-earrings",
+        name: "Winter Embrace Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we13.png", "/images/earrings/we13.1.png"],
+        description: "Cool tones and crystalline forms that capture the beauty of the winter season.",
+        provenance: "Inspired by frost patterns on a winter morning.",
+        specs: {
+            metal: "Silver Toned Finish",
+            stone: "Frost Crystals",
+            origin: "Artisan Studio, India",
+            closure: "Butterfly Back"
+        }
+    },
+    {
+        id: "64",
+        slug: "wandering-ethereal-earrings",
+        name: "Wandering Ethereal Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we16.png", "/images/earrings/we16.1.png"],
+        description: "For the wanderer at heart, these earrings add an ethereal touch to any adventure.",
+        provenance: "Designed for the modern nomad pursuing timeless beauty.",
+        specs: {
+            metal: "Rose Gold Toned",
+            stone: "Soft Zirconia",
+            origin: "Artisan Studio, India",
+            closure: "French Wire"
+        }
+    },
+    {
+        id: "65",
+        slug: "western-elegance-earrings",
+        name: "Western Elegance Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we17.png", "/images/earrings/we17.1.png"],
+        description: "A perfect blend of contemporary western style and traditional artisanal craft.",
+        provenance: "Bridging the gap between Bihar's soul and London's heart.",
+        specs: {
+            metal: "Gold Toned Plating",
+            stone: "Minimalist Accents",
+            origin: "London Studio",
+            closure: "Push Back"
+        }
+    },
+    {
+        id: "66",
+        slug: "woven-essence-earrings",
+        name: "Woven Essence Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we20.png", "/images/earrings/we20.1.png"],
+        description: "Capturing the essential beauty of artisanal craft through intricate woven forms.",
+        provenance: "A tribute to the centuries-old techniques of Indian jewelry makers.",
+        specs: {
+            metal: "Gold Toned Finish",
+            stone: "None",
+            origin: "Artisan Studio, India",
+            closure: "Butterfly Back"
+        }
+    },
+    {
+        id: "67",
+        slug: "water-edge-earrings",
+        name: "Water Edge Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we21.png", "/images/earrings/we21.1.png"],
+        description: "Fluid lines and shimmering surfaces that mimic the gentle movement of water.",
+        provenance: "Inspired by the serene rivers that flow through East India.",
+        specs: {
+            metal: "Silver Toned Finish",
+            stone: "Azure Crystals",
+            origin: "Artisan Studio, India",
+            closure: "French Wire"
+        }
+    },
+    {
+        id: "68",
+        slug: "white-empress-earrings",
+        name: "White Empress Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we24.png", "/images/earrings/we24.1.png"],
+        description: "Command attention with these regal earrings designed for modern-day royalty.",
+        provenance: "Part of our Imperial collection, exuding power and grace.",
+        specs: {
+            metal: "Gold Toned Finish",
+            stone: "Premium White Crystals",
+            origin: "Artisan Studio, India",
+            closure: "Push Back"
+        }
+    },
+    {
+        id: "69",
+        slug: "wishful-echo-earrings",
+        name: "Wishful Echo Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we26.png", "/images/earrings/we26.1.png"],
+        description: "A soft echo of traditional designs, bringing a wishful charm to your collection.",
+        provenance: "Hand-crafted to tell a story of hope and heritage.",
+        specs: {
+            metal: "Gold Toned Plating",
+            stone: "Small Crystal Accents",
+            origin: "Artisan Studio, India",
+            closure: "Butterfly Back"
+        }
+    },
+    {
+        id: "70",
+        slug: "woodish-elegance-earrings",
+        name: "Woodish Elegance Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we27.png", "/images/earrings/we27.1.png"],
+        description: "Earthy tones meeting elegant forms in these unique, nature-inspired earrings.",
+        provenance: "Inspired by the organic textures and warm colors of the forest.",
+        specs: {
+            metal: "Copper Toned Finish",
+            stone: "Matte Accents",
+            origin: "Artisan Studio, India",
+            closure: "Push Back"
+        }
+    },
+    {
+        id: "71",
+        slug: "waltz-enchantment-earrings",
+        name: "Waltz Enchantment Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we28.png", "/images/earrings/we28.1.png"],
+        description: "Dazzle and dance with these enchanting earrings that move with kinetic grace.",
+        provenance: "Designed to capture the rhythm and elegance of a timeless waltz.",
+        specs: {
+            metal: "Gold Toned Finish",
+            stone: "Sparkling Zirconia",
+            origin: "Artisan Studio, India",
+            closure: "French Wire"
+        }
+    },
+    {
+        id: "72",
+        slug: "winged-elegance-earrings",
+        name: "Winged Elegance Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we30.png", "/images/earrings/we30.1.png"],
+        description: "Taking flight with elegant designs that celebrate the beauty of avian movement.",
+        provenance: "Inspired by the flight of the phoenix, representing rebirth and beauty.",
+        specs: {
+            metal: "Rose Gold Toned",
+            stone: "Feather Detail Accents",
+            origin: "Artisan Studio, India",
+            closure: "Push Back"
+        }
+    },
+    {
+        id: "73",
+        slug: "wispy-ethereal-earrings",
+        name: "Wispy Ethereal Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we31.png", "/images/earrings/we31.1.png"],
+        description: "Delicate wisps of gold and crystal that create a truly ethereal and magical look.",
+        provenance: "Part of nuestro Dreamscape collection, capturing the unseen.",
+        specs: {
+            metal: "Gold Toned Finish",
+            stone: "Micro Crystals",
+            origin: "Artisan Studio, India",
+            closure: "Butterfly Back"
+        }
     }
 ];
 
