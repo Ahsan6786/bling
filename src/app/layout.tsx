@@ -4,6 +4,7 @@ import "./globals.css";
 import { CartProvider } from "@/context/cart-context";
 import Navbar from "@/components/navbar";
 import Chatbot from "@/components/chatbot";
+import GiftPopup from "@/components/gift-popup";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -65,9 +66,9 @@ export const metadata: Metadata = {
     follow: true,
   },
   icons: {
-    icon: "/images/blingish/favicon.png",
-    shortcut: "/images/blingish/favicon.png",
-    apple: "/images/blingish/favicon.png",
+    icon: "/images/blingish/favicon.ico",
+    shortcut: "/images/blingish/favicon.ico",
+    apple: "/images/blingish/favicon.ico",
   },
 };
 
@@ -97,6 +98,7 @@ export default function RootLayout({
             <Navbar />
             {children}
             <Chatbot />
+            <GiftPopup />
           </CartProvider>
         </ThemeProvider>
       </body>
