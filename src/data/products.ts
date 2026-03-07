@@ -890,6 +890,278 @@ export const products: Product[] = [
             origin: "Artisan Studio, India",
             closure: "Butterfly Back"
         }
+    },
+    {
+        id: "74",
+        slug: "we3-earrings",
+        name: "Aura Bloom Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we3.png", "/images/earrings/we3.1.png"],
+        description: "A blooming aura of craftsmanship and light.",
+        provenance: "Hand-finished by our master artisans.",
+        specs: {
+            metal: "Gold Toned Finish",
+            stone: "Premium Crystals",
+            origin: "Artisan Studio, India",
+            closure: "Push Back"
+        }
+    },
+    {
+        id: "75",
+        slug: "we9-earrings",
+        name: "Silver Mist Hoops",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we9.png", "/images/earrings/we9.1.png"],
+        description: "Elegant hoops with a silver mist finish.",
+        provenance: "Inspired by morning dew.",
+        specs: {
+            metal: "Silver Toned Finish",
+            stone: "None",
+            origin: "Artisan Studio, India",
+            closure: "Hinge Clasp"
+        }
+    },
+    {
+        id: "76",
+        slug: "we10-earrings",
+        name: "Royal Petal Studs",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we10.png", "/images/earrings/we10.1.png"],
+        description: "Regal studs shaped like delicate petals.",
+        provenance: "Artisan crafted for eternal beauty.",
+        specs: {
+            metal: "Gold Toned Finish",
+            stone: "Zirconia",
+            origin: "Artisan Studio, India",
+            closure: "Butterfly Back"
+        }
+    },
+    {
+        id: "77",
+        slug: "we11-earrings",
+        name: "Celestial Swirls",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we11.png", "/images/earrings/we11.1.png"],
+        description: "Dynamic swirls reflecting cosmic energy.",
+        provenance: "Inspired by the dance of stars.",
+        specs: {
+            metal: "Rose Gold Toned",
+            stone: "None",
+            origin: "Artisan Studio, India",
+            closure: "Friction Post"
+        }
+    },
+    {
+        id: "78",
+        slug: "we12-earrings",
+        name: "Lumina Drops",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we12.png", "/images/earrings/we12.1.png"],
+        description: "Shimmering drops that illuminate your presence.",
+        provenance: "Part of our Lumina collection.",
+        specs: {
+            metal: "Silver Toned Finish",
+            stone: "Clear Crystals",
+            origin: "Artisan Studio, India",
+            closure: "Push Back"
+        }
+    },
+    {
+        id: "79",
+        slug: "we14-earrings",
+        name: "Golden Weaver Hoops",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we14.png", "/images/earrings/we14.1.png"],
+        description: "Intricately woven gold-toned hoops.",
+        provenance: "A tribute to heritage weaving.",
+        specs: {
+            metal: "Gold Toned Plating",
+            stone: "None",
+            origin: "Artisan Studio, India",
+            closure: "Hinge Clasp"
+        }
+    },
+    {
+        id: "80",
+        slug: "we15-earrings",
+        name: "Velvet Breeze Studs",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we15.png", "/images/earrings/we15.1.png"],
+        description: "Soft and graceful studs with a velvet finish.",
+        provenance: "Inspired by gentle spring breezes.",
+        specs: {
+            metal: "Gold Toned Finish",
+            stone: "Matte Accents",
+            origin: "Artisan Studio, India",
+            closure: "Butterfly Back"
+        }
+    },
+    {
+        id: "81",
+        slug: "we18-earrings",
+        name: "Wild Enchantress Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we18.png", "/images/earrings/we18.1.png"],
+        description: "Bold and untamed floral designs.",
+        provenance: "Capturing wild beauty.",
+        specs: {
+            metal: "Gold Toned Finish",
+            stone: "Mixed Stones",
+            origin: "Artisan Studio, India",
+            closure: "Push Back"
+        }
+    },
+    {
+        id: "82",
+        slug: "we19-earrings",
+        name: "Winter Glow Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we19.png", "/images/earrings/we19.1.png"],
+        description: "Cool tones meeting a brilliant glow.",
+        provenance: "Inspired by winter mornings.",
+        specs: {
+            metal: "Silver Toned Finish",
+            stone: "Frost Crystals",
+            origin: "Artisan Studio, India",
+            closure: "Butterfly Back"
+        }
+    },
+    {
+        id: "83",
+        slug: "we22-earrings",
+        name: "Water Ripple Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we22.png", "/images/earrings/we22.1.png"],
+        description: "Fluid curves mimicking water's surface.",
+        provenance: "Serene and moving design.",
+        specs: {
+            metal: "Rose Gold Toned",
+            stone: "Azure Accents",
+            origin: "Artisan Studio, India",
+            closure: "French Wire"
+        }
+    },
+    {
+        id: "84",
+        slug: "we23-earrings",
+        name: "Imperial Crest Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we23.png", "/images/earrings/we23.1.png"],
+        description: "Regal statement pieces for the modern leader.",
+        provenance: "Part of our Imperial Collection.",
+        specs: {
+            metal: "Gold Toned Finish",
+            stone: "Premium Zirconia",
+            origin: "Artisan Studio, India",
+            closure: "Push Back"
+        }
+    },
+    {
+        id: "85",
+        slug: "we25-earrings",
+        name: "Celestial Whisper Hoops",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we25.png", "/images/earrings/we25.1.png"],
+        description: "A soft whisper of stellar beauty.",
+        provenance: "Hand-finished for subtle radiance.",
+        specs: {
+            metal: "Gold Toned Plating",
+            stone: "None",
+            origin: "Artisan Studio, India",
+            closure: "Hinge Clasp"
+        }
+    },
+    {
+        id: "86",
+        slug: "we32-earrings",
+        name: "Ethereal Wing Studs",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we32.png", "/images/earrings/we32.1.png"],
+        description: "Taking flight with delicate winged forms.",
+        provenance: "Inspired by the magic of flight.",
+        specs: {
+            metal: "Rose Gold Toned",
+            stone: "Clear Crystals",
+            origin: "Artisan Studio, India",
+            closure: "Butterfly Back"
+        }
+    },
+    {
+        id: "87",
+        slug: "we33-earrings",
+        name: "Golden Harmony Studs",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we33.png", "/images/earrings/we33.1.png"],
+        description: "A perfect balance of form and light.",
+        provenance: "Handcrafted for timeless elegance.",
+        specs: {
+            metal: "Gold Toned Finish",
+            stone: "None",
+            origin: "Artisan Studio, India",
+            closure: "Friction Post"
+        }
+    },
+    {
+        id: "88",
+        slug: "we34-earrings",
+        name: "Starlight Bloom Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we34.png", "/images/earrings/we34.1.png"],
+        description: "Floral beauty meeting celestial sparkle.",
+        provenance: "Part of our signature collection.",
+        specs: {
+            metal: "Gold Toned Finish",
+            stone: "Sparkling Zirconia",
+            origin: "Artisan Studio, India",
+            closure: "Push Back"
+        }
+    },
+    {
+        id: "pendant-02",
+        slug: "pen2-pendant",
+        name: "Regal Sunburst Pendant",
+        price: 0,
+        category: "Pendant/Necklace",
+        images: ["/images/pendant/pen2.png", "/images/pendant/pen2.1.png"],
+        description: "A bold sunburst design radiating warmth.",
+        provenance: "Inspired by ancient solar motifs.",
+        specs: {
+            metal: "Gold Toned Plating",
+            stone: "Central Solitaire",
+            origin: "Artisan Studio, India",
+            closure: "Adjustable Chain"
+        }
+    },
+    {
+        id: "pendant-03",
+        slug: "pen3-pendant",
+        name: "Moonlit Serenity Pendant",
+        price: 0,
+        category: "Pendant/Necklace",
+        images: ["/images/pendant/pen3.png", "/images/pendant/pen3.1.png"],
+        description: "Soft, reflected light and curved forms.",
+        provenance: "Inspired by moonlight on water.",
+        specs: {
+            metal: "Silver Toned Plating",
+            stone: "Moonstone Style Zirconia",
+            origin: "Artisan Studio, India",
+            closure: "Adjustable Chain"
+        }
     }
 ];
 

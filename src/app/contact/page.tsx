@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, MapPin, Phone, Mail, ArrowLeft, Instagram } from "lucide-react";
+import { Send, MapPin, Phone, Mail, ArrowLeft, Instagram, Facebook } from "lucide-react";
 import Link from "next/link";
 
 const ContactPage = () => {
@@ -97,10 +97,27 @@ const ContactPage = () => {
                                 <div>
                                     <h3 className="text-xs uppercase tracking-widest font-medium mb-2 text-[var(--text-color)]">Email</h3>
                                     <p className="text-sm font-bold text-[var(--text-color)]">
-                                        hello@blingish.jewelry
+                                        blingishjewels@gmail.com
                                     </p>
                                 </div>
                             </div>
+
+                            <a
+                                href="https://www.facebook.com/people/Blingish-Jewels/61587587948549/"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex gap-6 items-start group"
+                            >
+                                <div className="p-3 bg-[var(--card-bg)] rounded-full shadow-sm border border-[var(--border-color)] group-hover:bg-[#1877F2] group-hover:text-white transition-all duration-500">
+                                    <Facebook size={20} className="transition-colors" />
+                                </div>
+                                <div className="border-b border-transparent group-hover:border-[#1877F2]/20 pb-1 transition-all">
+                                    <h3 className="text-xs uppercase tracking-widest font-medium mb-2 text-[var(--text-color)]">Facebook</h3>
+                                    <p className="text-sm text-[#1877F2] font-bold tracking-widest">
+                                        Blingish Jewels
+                                    </p>
+                                </div>
+                            </a>
 
                             <a
                                 href="https://www.instagram.com/blingish_jewels_?igsh=YXUxNjUyemUxZ2x4"
