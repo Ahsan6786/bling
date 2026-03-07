@@ -28,6 +28,13 @@ const ProductClient = ({ product }: ProductClientProps) => {
     const [zoomPos, setZoomPos] = useState({ x: 50, y: 50 });
     const [isZooming, setIsZooming] = useState(false);
     const [isCopied, setIsCopied] = useState(false);
+    const [showNotification, setShowNotification] = useState(false);
+
+    const handleAddToCart = () => {
+        addToCart(product.name, product.price, product.images[0], product.slug);
+        setShowNotification(true);
+        setTimeout(() => setShowNotification(false), 2000);
+    };
 
     // When switching thumbnail, always reset zoom to show full image
     const handleThumbnailClick = (idx: number) => {
@@ -116,7 +123,7 @@ const ProductClient = ({ product }: ProductClientProps) => {
                                 <button
                                     key={idx}
                                     onClick={() => handleThumbnailClick(idx)}
-                                    className={`relative flex-shrink-0 w-24 h-24 md:w-28 md:h-28 rounded-3xl overflow-hidden border-2 transition-all duration-500 bg-white ${activeImage === idx ? 'border-[var(--accent-color)] scale-105 shadow-2xl' : 'border-[var(--border-color)] opacity-70 hover:opacity-100 hover:border-gray-400'}`}
+                                    className={`relative flex-shrink-0 w-24 h-24 md:w-28 md:h-28 rounded-3xl overflow-hidden border-2 transition-all duration-500 bg-[var(--card-bg)] ${activeImage === idx ? 'border-[var(--accent-color)] scale-105 shadow-2xl' : 'border-[var(--border-color)] opacity-70 hover:opacity-100 hover:border-gray-400'}`}
                                 >
                                     <img src={img} className="w-full h-full object-contain p-2.5" alt={`${product.name} view ${idx + 1}`} loading="lazy" />
                                 </button>
@@ -125,7 +132,7 @@ const ProductClient = ({ product }: ProductClientProps) => {
 
                         {/* Main Image Container */}
                         <div
-                            className={`order-1 md:order-2 flex-grow relative aspect-[4/5] md:aspect-square rounded-[2.5rem] md:rounded-[4rem] overflow-hidden bg-white shadow-[0_20px_60px_rgba(0,0,0,0.03)] border border-[var(--border-color)] ${isZooming ? 'cursor-zoom-out' : 'cursor-zoom-in'}`}
+                            className={`order-1 md:order-2 flex-grow relative aspect-[4/5] md:aspect-square rounded-[2.5rem] md:rounded-[4rem] overflow-hidden bg-[var(--card-bg)] shadow-[0_20px_60px_rgba(0,0,0,0.03)] border border-[var(--border-color)] ${isZooming ? 'cursor-zoom-out' : 'cursor-zoom-in'}`}
                             onMouseMove={handleMouseMove}
                             onClick={handleImageClick}
                         >
@@ -142,7 +149,7 @@ const ProductClient = ({ product }: ProductClientProps) => {
 
                             {/* Zoom Overlay */}
                             <div
-                                className={`absolute inset-0 pointer-events-none transition-opacity duration-300 bg-white ${isZooming ? 'opacity-100' : 'opacity-0'}`}
+                                className={`absolute inset-0 pointer-events-none transition-opacity duration-300 bg-[var(--card-bg)] ${isZooming ? 'opacity-100' : 'opacity-0'}`}
                                 style={{
                                     backgroundImage: `url(${product.images[activeImage]})`,
                                     backgroundPosition: `${zoomPos.x}% ${zoomPos.y}%`,
@@ -151,9 +158,9 @@ const ProductClient = ({ product }: ProductClientProps) => {
                                 }}
                             />
 
-                            {/* Zoom Hint */}
+                            {/* Zoom Hint - Repositioned to bottom-right for clarity */}
                             {!isZooming && (
-                                <div className="absolute top-10 right-10 p-4 rounded-full bg-white/90 backdrop-blur-md border border-[var(--border-color)] text-[var(--accent-color)] shadow-xl z-20 hover:scale-110 transition-transform">
+                                <div className="absolute bottom-10 right-10 p-4 rounded-full bg-[var(--accent-color)] text-white shadow-2xl z-20 hover:scale-110 transition-transform">
                                     <ZoomIn size={22} />
                                 </div>
                             )}
@@ -208,15 +215,15 @@ const ProductClient = ({ product }: ProductClientProps) => {
                             <div className="flex flex-col gap-4 mb-12">
                                 <div className="flex gap-4">
                                     <button
-                                        onClick={() => addToCart(product.name, product.price, product.images[0], product.slug)}
-                                        className="flex-grow bg-[var(--accent-color)] text-white h-16 rounded-full text-[11px] uppercase font-bold tracking-[0.4em] hover:bg-[var(--accent-color)]/90 transition-all duration-500 flex items-center justify-center gap-3 shadow-xl shadow-[var(--accent-color)]/10 group"
+                                        onClick={handleAddToCart}
+                                        className="flex-grow bg-[var(--accent-color)] text-white h-16 rounded-full text-[11px] uppercase font-bold tracking-[0.4em] hover:bg-[var(--accent-color)]/90 transition-all duration-500 flex items-center justify-center gap-3 shadow-xl shadow-[var(--accent-color)]/10 group relative overflow-hidden"
                                     >
                                         <ShoppingBag size={18} className="group-hover:scale-110 transition-transform" />
                                         Add to Cart
                                     </button>
                                     <button
                                         onClick={handleShare}
-                                        className="w-16 h-16 flex-shrink-0 flex items-center justify-center rounded-full border border-[var(--border-color)] text-[var(--text-color)] hover:border-[var(--accent-color)] hover:text-[var(--accent-color)] transition-all duration-500 bg-white relative shadow-sm"
+                                        className="w-16 h-16 flex-shrink-0 flex items-center justify-center rounded-full border border-[var(--border-color)] text-[var(--text-color)] hover:border-[var(--accent-color)] hover:text-[var(--accent-color)] transition-all duration-500 bg-[var(--card-bg)] relative shadow-sm"
                                     >
                                         {isCopied ? <Check size={20} /> : <Share2 size={20} />}
                                     </button>
@@ -290,6 +297,21 @@ const ProductClient = ({ product }: ProductClientProps) => {
                         </div>
                     ))}
                 </motion.div>
+
+                {/* Notifications */}
+                <AnimatePresence>
+                    {showNotification && (
+                        <motion.div
+                            initial={{ opacity: 0, y: 50, x: "-50%" }}
+                            animate={{ opacity: 1, y: 0, x: "-50%" }}
+                            exit={{ opacity: 0, y: 20, x: "-50%" }}
+                            className="fixed bottom-10 left-1/2 z-[1000] bg-[var(--accent-color)] text-white px-8 py-4 rounded-full shadow-2xl text-[10px] uppercase tracking-[0.4em] font-bold flex items-center gap-3"
+                        >
+                            <Check size={14} />
+                            Added to Bag
+                        </motion.div>
+                    )}
+                </AnimatePresence>
 
             </div>
         </motion.main>
