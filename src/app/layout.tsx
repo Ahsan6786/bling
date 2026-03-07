@@ -83,6 +83,8 @@ export const viewport = {
 import { ThemeProvider } from "@/context/theme-context";
 import { PageWrapper } from "@/components/page-wrapper";
 
+import ThemeManager from "@/components/theme-manager";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -95,6 +97,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <CartProvider>
+            <ThemeManager />
             <Navbar />
             {children}
             <Chatbot />
