@@ -4,6 +4,7 @@ import { useEffect, useState, useMemo } from "react";
 import { getCurrentOccasion, Occasion } from "@/lib/occasions";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Sparkles, Wand2 } from "lucide-react";
+import { usePathname } from "next/navigation";
 
 // Individual Particle Component
 const Particle = ({ type, color }: { type?: string, color: string }) => {
@@ -51,11 +52,16 @@ const Particle = ({ type, color }: { type?: string, color: string }) => {
 };
 
 const ThemeManager = () => {
+    const pathname = usePathname();
     const [activeOccasion, setActiveOccasion] = useState<Occasion | null>(null);
     const [showOverlay, setShowOverlay] = useState(false);
     const [themeEnabled, setThemeEnabled] = useState(true);
 
+    const isHomePage = pathname === "/";
+
     useEffect(() => {
+        if (!isHomePage) return;
+
         const occasion = getCurrentOccasion();
         if (occasion) {
             setActiveOccasion(occasion);
@@ -86,7 +92,14 @@ const ThemeManager = () => {
                 }
             }
         }
-    }, []);
+
+        // Cleanup: Reset colors when leaving the home page
+        return () => {
+            const root = document.documentElement;
+            root.style.setProperty("--accent-color", "#8B4A3A");
+            root.style.setProperty("--accent-secondary", "#fdfaf7");
+        };
+    }, [isHomePage]);
 
     const toggleTheme = () => {
         const newState = !themeEnabled;
@@ -96,7 +109,7 @@ const ThemeManager = () => {
         // Reset or apply colors
         const root = document.documentElement;
         if (!newState) {
-            // Restore default colors (you might need to adjust these to your exact defaults)
+            // Restore default colors
             root.style.setProperty("--accent-color", "#8B4A3A");
             root.style.setProperty("--accent-secondary", "#fdfaf7");
         } else if (activeOccasion) {
@@ -105,7 +118,7 @@ const ThemeManager = () => {
         }
     };
 
-    if (!activeOccasion) return null;
+    if (!isHomePage || !activeOccasion) return null;
 
     return (
         <>
