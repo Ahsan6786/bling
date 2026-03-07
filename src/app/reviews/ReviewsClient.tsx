@@ -2,69 +2,29 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { Star, Quote, ArrowLeft, ArrowRight } from "lucide-react";
+import { Star, Quote, ArrowLeft, ArrowRight, StarHalf } from "lucide-react";
 import Link from "next/link";
 
 const allReviews = [
     {
-        id: 1,
-        name: "Aditi S.",
+        id: 7,
+        name: "Ananya V.",
+        location: "Bengaluru",
+        text: "The Wandering Ethereal Earrings are absolutely stunning! They have this magical quality that just elevates any outfit. Truly a real jewel.",
+        rating: 4.5,
+        collection: "Wanderer Series",
+        image: "/images/reviews/rev1.png",
+        productSlug: "wandering-ethereal-earrings"
+    },
+    {
+        id: 8,
+        name: "Ishita K.",
         location: "Mumbai",
-        text: "The Blooming Petal earrings are delicate and catch the light beautifully. Perfect for daily wear!",
+        text: "The Midnight Glow Earrings are simply mesmerizing. The way they catch the light in the evening is magical. Definitely my go-to for special occasions.",
         rating: 5,
-        collection: "Nature's Grace",
-        image: "/images/earrings/b.png",
-        productSlug: "ethereal-blossom-earrings"
-    },
-    {
-        id: 2,
-        name: "Rajesh K.",
-        location: "Delhi",
-        text: "Ordered the Imperial Radiance Pendant for my wife. The finish is excellent and it arrived in a very premium box.",
-        rating: 5,
-        collection: "Royal Heritage",
-        image: "/images/pendant/pen1.png",
-        productSlug: "imperial-radiance-pendant"
-    },
-    {
-        id: 3,
-        name: "Sneha P.",
-        location: "Bangalore",
-        text: "The Moonlit Serenity earrings have a beautiful matte finish. They looks much more expensive than they are!",
-        rating: 5,
-        collection: "Midnight Series",
-        image: "/images/earrings/d.png",
-        productSlug: "moonlit-serenity-earrings"
-    },
-    {
-        id: 4,
-        name: "Meera J.",
-        location: "Chennai",
-        text: "Gilded Orchid earrings are my new favorite. The organic texture is so unique and elegant.",
-        rating: 5,
-        collection: "Botanical Gold",
-        image: "/images/earrings/a.png",
-        productSlug: "gilded-orchid-earrings"
-    },
-    {
-        id: 5,
-        name: "Arjun M.",
-        location: "Hyderabad",
-        text: "The Celestial Pearl earrings are stunning. Great quality and fast delivery. Very satisfied.",
-        rating: 5,
-        collection: "Celestial Series",
-        image: "/images/earrings/j.png",
-        productSlug: "celestial-pearl-intertwined-earrings"
-    },
-    {
-        id: 6,
-        name: "Pooja R.",
-        location: "Pune",
-        text: "The Triple Layered Hoops are bold and perfect for evenings. Lightweight but make a big statement.",
-        rating: 5,
-        collection: "Modern Architecture",
-        image: "/images/earrings/k.png",
-        productSlug: "triple-layered-radiance-hoops"
+        collection: "Stellar Series",
+        image: "/images/reviews/rev2.png",
+        productSlug: "we41-earrings"
     }
 ];
 
@@ -105,7 +65,7 @@ const ReviewsClient = () => {
                         transition={{ duration: 1 }}
                         className="text-[42px] md:text-[84px] font-serif italic tracking-tight uppercase leading-[0.9] text-[var(--text-color)]"
                     >
-                        What client says
+                        Show your <span className="not-italic">piece</span>
                     </motion.h1>
                 </header>
 
@@ -133,9 +93,16 @@ const ReviewsClient = () => {
                             {/* Content */}
                             <div className="flex-grow flex flex-col items-center md:items-start text-center md:text-left">
                                 <div className="flex gap-1 mb-4">
-                                    {[...Array(review.rating)].map((_, i) => (
-                                        <Star key={i} size={14} className="fill-[var(--accent-color)] text-[var(--accent-color)] opacity-70" />
-                                    ))}
+                                    {[...Array(5)].map((_, i) => {
+                                        const rating = review.rating;
+                                        if (i < Math.floor(rating)) {
+                                            return <Star key={i} size={14} className="fill-[var(--accent-color)] text-[var(--accent-color)] opacity-70" />;
+                                        } else if (i < rating) {
+                                            return <StarHalf key={i} size={14} className="fill-[var(--accent-color)] text-[var(--accent-color)] opacity-70" />;
+                                        } else {
+                                            return <Star key={i} size={14} className="text-[var(--accent-color)] opacity-20" />;
+                                        }
+                                    })}
                                 </div>
                                 <Quote className="text-[var(--accent-color)] opacity-10 mb-4 hidden md:block" size={32} />
                                 <p className="text-sm md:text-lg font-serif italic text-[var(--text-color)] opacity-80 leading-relaxed mb-6">

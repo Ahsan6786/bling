@@ -2,49 +2,29 @@
 
 import React, { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Star, Quote, ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { Star, Quote, ArrowRight, ChevronLeft, ChevronRight, StarHalf } from "lucide-react";
 import Link from "next/link";
 
 const reviews = [
     {
-        id: 1,
-        name: "Aditi S.",
+        id: 7,
+        name: "Ananya V.",
+        location: "Bengaluru",
+        text: "The Wandering Ethereal Earrings are absolutely stunning! They have this magical quality that just elevates any outfit. Truly a real jewel.",
+        rating: 4.5,
+        collection: "Wanderer Series",
+        image: "/images/reviews/rev1.png",
+        productSlug: "wandering-ethereal-earrings"
+    },
+    {
+        id: 8,
+        name: "Ishita K.",
         location: "Mumbai",
-        text: "The Blooming Petal earrings are delicate and catch the light beautifully. Perfect for daily wear!",
+        text: "The Midnight Glow Earrings are simply mesmerizing. The way they catch the light in the evening is magical. Definitely my go-to for special occasions.",
         rating: 5,
-        collection: "Nature's Grace",
-        image: "/images/earrings/b.png",
-        productSlug: "ethereal-blossom-earrings"
-    },
-    {
-        id: 2,
-        name: "Rajesh K.",
-        location: "Delhi",
-        text: "Ordered the Imperial Radiance Pendant for my wife. The finish is excellent and it arrived in a very premium box.",
-        rating: 5,
-        collection: "Royal Heritage",
-        image: "/images/pendant/pen1.png",
-        productSlug: "imperial-radiance-pendant"
-    },
-    {
-        id: 3,
-        name: "Sneha P.",
-        location: "Bangalore",
-        text: "The Moonlit Serenity earrings have a beautiful matte finish. They looks much more expensive than they are!",
-        rating: 5,
-        collection: "Midnight Series",
-        image: "/images/earrings/d.png",
-        productSlug: "moonlit-serenity-earrings"
-    },
-    {
-        id: 4,
-        name: "Arjun M.",
-        location: "Hyderabad",
-        text: "The Celestial Pearl earrings are stunning. Great quality and fast delivery. Very satisfied.",
-        rating: 5,
-        collection: "Celestial Series",
-        image: "/images/earrings/j.png",
-        productSlug: "celestial-pearl-intertwined-earrings"
+        collection: "Stellar Series",
+        image: "/images/reviews/rev2.png",
+        productSlug: "we41-earrings"
     }
 ];
 
@@ -76,7 +56,7 @@ const Reviews = () => {
                 >
                     <span className="text-[10px] tracking-[0.5em] uppercase opacity-40 font-bold mb-4 block text-[var(--accent-color)]">Testimonials</span>
                     <h2 className="text-[32px] md:text-[56px] font-serif italic tracking-tight text-[var(--text-color)] underline-brand-maroon/10">
-                        Stories of <span className="not-italic">Radiance</span>
+                        Show Your <span className="not-italic">Piece</span>
                     </h2>
                 </motion.div>
 
@@ -103,9 +83,16 @@ const Reviews = () => {
                             {/* Content Section */}
                             <div className="flex-grow flex flex-col items-center md:items-start text-center md:text-left">
                                 <div className="flex gap-1 mb-6">
-                                    {[...Array(reviews[index].rating)].map((_, i) => (
-                                        <Star key={i} size={16} className="fill-[var(--accent-color)] text-[var(--accent-color)] opacity-70" />
-                                    ))}
+                                    {[...Array(5)].map((_, i) => {
+                                        const rating = reviews[index].rating;
+                                        if (i < Math.floor(rating)) {
+                                            return <Star key={i} size={16} className="fill-[var(--accent-color)] text-[var(--accent-color)] opacity-70" />;
+                                        } else if (i < rating) {
+                                            return <StarHalf key={i} size={16} className="fill-[var(--accent-color)] text-[var(--accent-color)] opacity-70" />;
+                                        } else {
+                                            return <Star key={i} size={16} className="text-[var(--accent-color)] opacity-20" />;
+                                        }
+                                    })}
                                 </div>
 
                                 <div className="relative mb-8 md:mb-12">
