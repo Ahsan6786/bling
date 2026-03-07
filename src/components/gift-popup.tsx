@@ -8,8 +8,8 @@ const GiftPopup = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        // Check if user has already seen the popup in this session
-        const hasSeenPopup = sessionStorage.getItem("hasSeenGiftPopup");
+        // Check if user has already seen the popup
+        const hasSeenPopup = localStorage.getItem("hasSeenGiftPopupEver");
 
         if (!hasSeenPopup) {
             console.log("GiftPopup initialized, waiting 20s...");
@@ -18,7 +18,7 @@ const GiftPopup = () => {
             const initialTimer = setTimeout(() => {
                 console.log("20s passed, showing gift popup");
                 setIsVisible(true);
-                sessionStorage.setItem("hasSeenGiftPopup", "true");
+                localStorage.setItem("hasSeenGiftPopupEver", "true");
             }, 20000);
 
             return () => {

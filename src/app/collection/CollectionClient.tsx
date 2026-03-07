@@ -14,11 +14,14 @@ const CollectionClient = ({ products }: CollectionClientProps) => {
     const [copiedId, setCopiedId] = useState<string | null>(null);
     const [activeFilter, setActiveFilter] = useState("All");
 
-    const filters = ["All", "Earrings", "Pendant/Necklace"];
+    const filters = ["All", "Traditional", "Earrings", "Pendant/Necklace"];
+    const traditionalIds = ["52", "53", "earring-01", "35", "36", "37", "38", "39"];
 
     const filteredProducts = activeFilter === "All"
         ? products
-        : products.filter(p => p.category === activeFilter);
+        : activeFilter === "Traditional"
+            ? products.filter(p => traditionalIds.includes(p.id))
+            : products.filter(p => p.category === activeFilter);
 
     const handleShare = (e: React.MouseEvent, slug: string, id: string) => {
         e.preventDefault();
