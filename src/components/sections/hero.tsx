@@ -12,7 +12,7 @@ const Hero = () => {
     const scale = useTransform(scrollY, [0, 500], [1, 1.1]);
 
     return (
-        <section className="relative h-screen w-full flex items-end md:items-center justify-center overflow-hidden bg-[#0a0a0a] pb-32 md:pb-0">
+        <section className="relative h-screen w-full flex items-end justify-center overflow-hidden bg-[#0a0a0a] pb-32 md:pb-48">
 
             {/* Background Wrapper */}
             <motion.div
