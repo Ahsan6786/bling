@@ -7,13 +7,12 @@ export type Occasion = {
     endMonth: number;
     endDate: number;
     themeProps: {
-        accent?: string;
-        accentSecondary?: string;
-        bgColor?: string;
-        textColor?: string;
-        greeting?: string;
-        icon?: string;
-        emoji?: string;
+        accent: string;
+        accentSecondary: string;
+        gradient: string;
+        greeting: string;
+        emoji: string;
+        particleType?: "flower" | "heart" | "light" | "confetti" | "snow";
     };
 };
 
@@ -23,12 +22,14 @@ const occasions: Occasion[] = [
         startMonth: 2, // March
         startDate: 7,
         endMonth: 2,
-        endDate: 8,
+        endDate: 9, // Let it run till 9th
         themeProps: {
-            accent: "#D14D72", // Deep Blush Pink
-            accentSecondary: "#FCC8D1", // Soft Pink
-            greeting: "Celebrating the Power of Every Woman.",
+            accent: "#D63484", // Vibrant Pink
+            accentSecondary: "#FF9BD2",
+            gradient: "linear-gradient(135deg, #D63484 0%, #FF9BD2 100%)",
+            greeting: "Empowering Beauty, Celebrating You.",
             emoji: "🌸",
+            particleType: "flower"
         }
     },
     {
@@ -38,36 +39,27 @@ const occasions: Occasion[] = [
         endMonth: 1,
         endDate: 14,
         themeProps: {
-            accent: "#C2115E", // Rich Magenta
-            accentSecondary: "#FFDDEE",
-            greeting: "Wrapped in Love, Crafted with Passion.",
+            accent: "#E90064", // Deep Passion Red
+            accentSecondary: "#FFBDCD",
+            gradient: "linear-gradient(135deg, #E90064 0%, #FF55BB 100%)",
+            greeting: "Crafted for Love, Worn with Passion.",
             emoji: "💝",
-        }
-    },
-    {
-        name: "Independence Day",
-        startMonth: 7, // Aug
-        startDate: 15,
-        endMonth: 7,
-        endDate: 15,
-        themeProps: {
-            accent: "#FF9933", // Saffron
-            accentSecondary: "#138808", // Green
-            greeting: "The Brilliance of Freedom. Made in India.",
-            emoji: "🇮🇳",
+            particleType: "heart"
         }
     },
     {
         name: "Diwali Season",
-        startMonth: 9, // Oct (approximate for general use in this year or standard range)
+        startMonth: 9, // Oct
         startDate: 25,
         endMonth: 10, // Nov
         endDate: 5,
         themeProps: {
-            accent: "#E59400", // Deep Gold/Marigold
-            accentSecondary: "#911D00", // Earthy Red
-            greeting: "Bring Home the Light of Luxury.",
+            accent: "#FF8C00", // Bright Marigold
+            accentSecondary: "#FFD700", // Gold
+            gradient: "linear-gradient(135deg, #FF8C00 0%, #FFD700 100%)",
+            greeting: "Illuminate Your Aura with Blingish.",
             emoji: "🪔",
+            particleType: "light"
         }
     },
     {
@@ -77,10 +69,12 @@ const occasions: Occasion[] = [
         endMonth: 0, // Jan
         endDate: 3,
         themeProps: {
-            accent: "#165B33", // Pine Green
-            accentSecondary: "#BB2528", // Classic Red
-            greeting: "The Season of Giving & Shining.",
+            accent: "#008170", // Forest Green
+            accentSecondary: "#D21312", // Red
+            gradient: "linear-gradient(135deg, #008170 0%, #00BF63 100%)",
+            greeting: "Gift Perfection, Shine Forever.",
             emoji: "🎄",
+            particleType: "snow"
         }
     }
 ];
