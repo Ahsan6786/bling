@@ -89,7 +89,7 @@ const ProductClient = ({ product }: ProductClientProps) => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
-            className="pt-32 pb-20 bg-[var(--bg-color)] min-h-screen"
+            className="pt-40 pb-20 bg-[var(--bg-color)] min-h-screen"
         >
             <Script
                 id="product-schema"
@@ -99,26 +99,26 @@ const ProductClient = ({ product }: ProductClientProps) => {
             <div className="container mx-auto px-6 md:px-12">
 
                 {/* Breadcrumbs / Back */}
-                <div className="flex justify-between items-center mb-12 md:mb-16">
-                    <Link href="/collection" className="flex items-center gap-3 text-[10px] uppercase tracking-[0.4em] font-bold text-gray-400 hover:text-[var(--accent-color)] transition-colors group">
+                <div className="flex justify-between items-center mb-16 md:mb-24">
+                    <Link href="/collection" className="flex items-center gap-3 text-[11px] uppercase tracking-[0.4em] font-bold text-gray-400 hover:text-[var(--accent-color)] transition-colors group">
                         <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
                         Back to Collection
                     </Link>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
 
                     {/* Left: Image Gallery (8 columns on lg) */}
                     <div className="lg:col-span-7 flex flex-col md:flex-row gap-6 md:sticky md:top-32">
                         {/* Thumbnails - Vertical on desktop, Horizontal on mobile */}
-                        <div className="order-2 md:order-1 flex md:flex-col gap-4 overflow-x-auto md:overflow-y-auto no-scrollbar pb-2 min-w-[80px]">
+                        <div className="order-2 md:order-1 flex md:flex-col gap-5 overflow-x-auto md:overflow-y-auto no-scrollbar py-4 md:py-0 min-w-[100px]">
                             {product.images.map((img, idx) => (
                                 <button
                                     key={idx}
                                     onClick={() => handleThumbnailClick(idx)}
-                                    className={`relative flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden border-2 transition-all duration-500 bg-white ${activeImage === idx ? 'border-[var(--accent-color)] scale-105 shadow-xl' : 'border-[var(--border-color)] opacity-80 hover:opacity-100 hover:border-gray-400'}`}
+                                    className={`relative flex-shrink-0 w-24 h-24 md:w-28 md:h-28 rounded-3xl overflow-hidden border-2 transition-all duration-500 bg-white ${activeImage === idx ? 'border-[var(--accent-color)] scale-105 shadow-2xl' : 'border-[var(--border-color)] opacity-70 hover:opacity-100 hover:border-gray-400'}`}
                                 >
-                                    <img src={img} className="w-full h-full object-contain p-2" alt={`${product.name} view ${idx + 1}`} loading="lazy" />
+                                    <img src={img} className="w-full h-full object-contain p-2.5" alt={`${product.name} view ${idx + 1}`} loading="lazy" />
                                 </button>
                             ))}
                         </div>
@@ -153,8 +153,8 @@ const ProductClient = ({ product }: ProductClientProps) => {
 
                             {/* Zoom Hint */}
                             {!isZooming && (
-                                <div className="absolute top-6 right-6 p-3 rounded-full bg-white/80 backdrop-blur-md border border-[var(--border-color)] text-[var(--accent-color)] shadow-sm">
-                                    <ZoomIn size={18} />
+                                <div className="absolute top-10 right-10 p-4 rounded-full bg-white/90 backdrop-blur-md border border-[var(--border-color)] text-[var(--accent-color)] shadow-xl z-20 hover:scale-110 transition-transform">
+                                    <ZoomIn size={22} />
                                 </div>
                             )}
 
