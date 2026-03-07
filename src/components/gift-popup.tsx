@@ -8,24 +8,23 @@ const GiftPopup = () => {
     const [isVisible, setIsVisible] = useState(false);
 
     useEffect(() => {
-        console.log("GiftPopup initialized, waiting 10s...");
+        // Check if user has already seen the popup in this session
+        const hasSeenPopup = sessionStorage.getItem("hasSeenGiftPopup");
 
-        // Appear after 10 seconds
-        const initialTimer = setTimeout(() => {
-            console.log("10s passed, showing gift popup");
-            setIsVisible(true);
-        }, 10000);
+        if (!hasSeenPopup) {
+            console.log("GiftPopup initialized, waiting 20s...");
 
-        // Re-show every 5 minutes if it was closed
-        const repeatInterval = setInterval(() => {
-            console.log("5 minute check, ensuring gift popup visibility");
-            setIsVisible(true);
-        }, 300000);
+            // Appear after 20 seconds
+            const initialTimer = setTimeout(() => {
+                console.log("20s passed, showing gift popup");
+                setIsVisible(true);
+                sessionStorage.setItem("hasSeenGiftPopup", "true");
+            }, 20000);
 
-        return () => {
-            clearTimeout(initialTimer);
-            clearInterval(repeatInterval);
-        };
+            return () => {
+                clearTimeout(initialTimer);
+            };
+        }
     }, []);
 
     return (

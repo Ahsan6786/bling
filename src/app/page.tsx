@@ -22,6 +22,7 @@ export default function Home() {
       <GridFeatures />
       <Cabinet />
       <Story />
+      <TraditionalSection />
       <Reviews />
       <FAQ />
 
