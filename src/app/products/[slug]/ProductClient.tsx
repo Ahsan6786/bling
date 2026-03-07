@@ -118,14 +118,14 @@ const ProductClient = ({ product }: ProductClientProps) => {
                     {/* Left: Image Gallery (8 columns on lg) */}
                     <div className="lg:col-span-7 flex flex-col md:flex-row gap-6 md:sticky md:top-32">
                         {/* Thumbnails - Vertical on desktop, Horizontal on mobile */}
-                        <div className="order-2 md:order-1 flex md:flex-col gap-5 overflow-x-auto md:overflow-y-auto no-scrollbar py-4 md:py-0 min-w-[100px]">
+                        <div className="order-2 md:order-1 flex md:flex-col gap-6 overflow-x-auto md:overflow-y-auto no-scrollbar p-4 md:p-2 min-w-[120px]">
                             {product.images.map((img, idx) => (
                                 <button
                                     key={idx}
                                     onClick={() => handleThumbnailClick(idx)}
-                                    className={`relative flex-shrink-0 w-24 h-24 md:w-28 md:h-28 rounded-3xl overflow-hidden border-2 transition-all duration-500 bg-[var(--card-bg)] ${activeImage === idx ? 'border-[var(--accent-color)] scale-105 shadow-2xl' : 'border-[var(--border-color)] opacity-70 hover:opacity-100 hover:border-gray-400'}`}
+                                    className={`relative flex-shrink-0 w-24 h-24 md:w-28 md:h-28 rounded-3xl border-2 transition-all duration-500 bg-[var(--card-bg)] ${activeImage === idx ? 'border-[var(--accent-color)] scale-110 shadow-2xl z-10' : 'border-[var(--border-color)] opacity-70 hover:opacity-100 hover:border-gray-400'}`}
                                 >
-                                    <img src={img} className="w-full h-full object-contain p-2.5" alt={`${product.name} view ${idx + 1}`} loading="lazy" />
+                                    <img src={img} className="w-full h-full object-contain p-2.5 rounded-3xl" alt={`${product.name} view ${idx + 1}`} loading="lazy" />
                                 </button>
                             ))}
                         </div>
@@ -158,9 +158,9 @@ const ProductClient = ({ product }: ProductClientProps) => {
                                 }}
                             />
 
-                            {/* Zoom Hint - Repositioned for optimal visibility */}
+                            {/* Zoom Hint - Repositioned for optimal visibility and no clipping */}
                             {!isZooming && (
-                                <div className="absolute bottom-6 right-6 md:bottom-10 md:right-10 p-4 rounded-full bg-[var(--accent-color)] text-white shadow-2xl z-20 hover:scale-110 transition-transform">
+                                <div className="absolute bottom-10 right-10 p-4 rounded-full bg-[var(--accent-color)] text-white shadow-2xl z-20 hover:scale-110 transition-transform">
                                     <ZoomIn size={22} />
                                 </div>
                             )}
