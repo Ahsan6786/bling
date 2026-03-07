@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ShoppingBag, Heart, ShieldCheck, Truck, RotateCcw, Share2, Check, Sparkles } from "lucide-react";
+import { ArrowLeft, ShoppingBag, ShieldCheck, Truck, RotateCcw, Share2, Check, Sparkles, ZoomIn, Search } from "lucide-react";
 import Link from "next/link";
 import { Product } from "@/data/products";
 import { useCart } from "@/context/cart-context";
@@ -111,12 +111,12 @@ const ProductClient = ({ product }: ProductClientProps) => {
                     {/* Left: Image Gallery (8 columns on lg) */}
                     <div className="lg:col-span-7 flex flex-col md:flex-row gap-6 md:sticky md:top-32">
                         {/* Thumbnails - Vertical on desktop, Horizontal on mobile */}
-                        <div className="order-2 md:order-1 flex md:flex-col gap-4 overflow-x-auto md:overflow-y-auto no-scrollbar pb-2">
+                        <div className="order-2 md:order-1 flex md:flex-col gap-4 overflow-x-auto md:overflow-y-auto no-scrollbar pb-2 min-w-[80px]">
                             {product.images.map((img, idx) => (
                                 <button
                                     key={idx}
                                     onClick={() => handleThumbnailClick(idx)}
-                                    className={`relative flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden border-2 transition-all duration-500 bg-white ${activeImage === idx ? 'border-[var(--accent-color)] scale-105 shadow-md' : 'border-[var(--border-color)] opacity-60 hover:opacity-100 hover:border-gray-300'}`}
+                                    className={`relative flex-shrink-0 w-20 h-20 md:w-24 md:h-24 rounded-2xl overflow-hidden border-2 transition-all duration-500 bg-white ${activeImage === idx ? 'border-[var(--accent-color)] scale-105 shadow-xl' : 'border-[var(--border-color)] opacity-80 hover:opacity-100 hover:border-gray-400'}`}
                                 >
                                     <img src={img} className="w-full h-full object-contain p-2" alt={`${product.name} view ${idx + 1}`} loading="lazy" />
                                 </button>
@@ -151,7 +151,14 @@ const ProductClient = ({ product }: ProductClientProps) => {
                                 }}
                             />
 
-                            {/* Mobile Zoom Hint */}
+                            {/* Zoom Hint */}
+                            {!isZooming && (
+                                <div className="absolute top-6 right-6 p-3 rounded-full bg-white/80 backdrop-blur-md border border-[var(--border-color)] text-[var(--accent-color)] shadow-sm">
+                                    <ZoomIn size={18} />
+                                </div>
+                            )}
+
+                            {/* Mobile Zoom Hint Label */}
                             {!isZooming && (
                                 <div className="absolute bottom-6 right-6 md:hidden bg-black/40 text-white text-[8px] px-3 py-1.5 rounded-full tracking-[0.2em] uppercase font-bold backdrop-blur-md">
                                     Tap to Zoom
@@ -199,20 +206,17 @@ const ProductClient = ({ product }: ProductClientProps) => {
 
                             {/* Action Buttons */}
                             <div className="flex flex-col gap-4 mb-12">
-                                <div className="flex gap-3">
+                                <div className="flex gap-4">
                                     <button
                                         onClick={() => addToCart(product.name, product.price, product.images[0], product.slug)}
-                                        className="flex-grow bg-[var(--accent-color)] text-white py-5 px-8 rounded-full text-[11px] uppercase font-bold tracking-[0.4em] hover:bg-[var(--accent-color)]/90 transition-all duration-500 flex items-center justify-center gap-3 shadow-xl shadow-[var(--accent-color)]/10 group"
+                                        className="flex-grow bg-[var(--accent-color)] text-white h-16 rounded-full text-[11px] uppercase font-bold tracking-[0.4em] hover:bg-[var(--accent-color)]/90 transition-all duration-500 flex items-center justify-center gap-3 shadow-xl shadow-[var(--accent-color)]/10 group"
                                     >
                                         <ShoppingBag size={18} className="group-hover:scale-110 transition-transform" />
                                         Add to Cart
                                     </button>
-                                    <button className="w-16 h-16 flex items-center justify-center rounded-full border border-[var(--border-color)] text-[var(--text-color)] hover:border-[var(--accent-color)] hover:text-[var(--accent-color)] transition-all duration-500 bg-white">
-                                        <Heart size={20} />
-                                    </button>
                                     <button
                                         onClick={handleShare}
-                                        className="w-16 h-16 flex items-center justify-center rounded-full border border-[var(--border-color)] text-[var(--text-color)] hover:border-[var(--accent-color)] hover:text-[var(--accent-color)] transition-all duration-500 bg-white relative"
+                                        className="w-16 h-16 flex-shrink-0 flex items-center justify-center rounded-full border border-[var(--border-color)] text-[var(--text-color)] hover:border-[var(--accent-color)] hover:text-[var(--accent-color)] transition-all duration-500 bg-white relative shadow-sm"
                                     >
                                         {isCopied ? <Check size={20} /> : <Share2 size={20} />}
                                     </button>
