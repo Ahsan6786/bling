@@ -1162,6 +1162,102 @@ export const products: Product[] = [
             origin: "Artisan Studio, India",
             closure: "Adjustable Chain"
         }
+    },
+    {
+        id: "89",
+        slug: "we35-earrings",
+        name: "Celestial Radiance Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we35.png", "/images/earrings/we35.1.png"],
+        description: "Capturing the brilliance of a stellar event, these earrings bring a profound glow to your look.",
+        provenance: "Part of our High-Altitude collection, capturing mountain light.",
+        specs: {
+            metal: "Gold Toned Finish",
+            stone: "Premium Zirconia",
+            origin: "Artisan Studio, India",
+            closure: "Push Back"
+        }
+    },
+    {
+        id: "90",
+        slug: "we36-earrings",
+        name: "Imperial Bloom Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we36.png", "/images/earrings/we36.1.png"],
+        description: "Regal floral motifs meeting master-crafted gold tones for a presence of authority.",
+        provenance: "Inspired by the royal heritage gardens of India.",
+        specs: {
+            metal: "Matt Gold Toned Finish",
+            stone: "None",
+            origin: "Artisan Studio, India",
+            closure: "Butterfly Back"
+        }
+    },
+    {
+        id: "91",
+        slug: "we37-earrings",
+        name: "Starlight Whisper Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we37.png", "/images/earrings/we37.1.png"],
+        description: "A delicate whisper of stellar brilliance, perfect for subtle yet striking elegance.",
+        provenance: "Handcrafted to catch the moonlight with every movement.",
+        specs: {
+            metal: "Silver Toned Finish",
+            stone: "Tiny Star Crystals",
+            origin: "Artisan Studio, India",
+            closure: "Push Back"
+        }
+    },
+    {
+        id: "92",
+        slug: "we38-earrings",
+        name: "Ethereal Glow Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we38.png", "/images/earrings/we38.1.png"],
+        description: "Soft, dreamlike curves that seem to emit their own ethereal light.",
+        provenance: "Designed to capture the fleeting beauty of a sunrise breeze.",
+        specs: {
+            metal: "Rose Gold Toned",
+            stone: "Soft-Focus Zirconia",
+            origin: "Artisan Studio, India",
+            closure: "French Wire"
+        }
+    },
+    {
+        id: "93",
+        slug: "we40-earrings",
+        name: "Regal Petal Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we40.png", "/images/earrings/we40.1.png"],
+        description: "Broad, architectural petals that frame the face with architectural grace and luxury.",
+        provenance: "A modern tribute to classical floral design elements.",
+        specs: {
+            metal: "High-Polish Gold Tone",
+            stone: "None",
+            origin: "Artisan Studio, India",
+            closure: "Clutch Back"
+        }
+    },
+    {
+        id: "pendant-04",
+        slug: "pen4-pendant",
+        name: "Imperial Grace Pendant",
+        price: 0,
+        category: "Pendant/Necklace",
+        images: ["/images/pendant/pen4.png", "/images/pendant/pen4.1.png"],
+        description: "A centerpiece that embodies grace and strength through its interlocking solar patterns.",
+        provenance: "Part of our Heritage collection, celebrating artisanal legacy.",
+        specs: {
+            metal: "Gold Toned Plating",
+            stone: "Mixed Brilliance Zirconia",
+            origin: "Artisan Studio, India",
+            closure: "Adjustable Chain"
+        }
     }
 ];
 
