@@ -67,11 +67,11 @@ const ThemeManager = () => {
             // Check if shown in this session
             const hasSeenOverlay = sessionStorage.getItem(`seen_occasion_${occasion.name}`);
             if (!hasSeenOverlay) {
-                // Show fullscreen celebrate overlay after 4 seconds as requested
+                // Show fullscreen celebrate overlay after 5 seconds as requested
                 const timer = setTimeout(() => {
                     setShowOverlay(true);
                     sessionStorage.setItem(`seen_occasion_${occasion.name}`, "true");
-                }, 4000);
+                }, 5000);
                 return () => clearTimeout(timer);
             }
 

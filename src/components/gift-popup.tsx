@@ -14,12 +14,12 @@ const GiftPopup = () => {
         if (!hasSeenPopup) {
             console.log("GiftPopup initialized, waiting 20s...");
 
-            // Appear after 20 seconds
+            // Appear after 10 seconds
             const initialTimer = setTimeout(() => {
-                console.log("20s passed, showing gift popup");
+                console.log("10s passed, showing gift popup");
                 setIsVisible(true);
                 localStorage.setItem("hasSeenGiftPopupEver", "true");
-            }, 20000);
+            }, 10000);
 
             return () => {
                 clearTimeout(initialTimer);
