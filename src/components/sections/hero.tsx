@@ -20,43 +20,23 @@ const Hero = () => {
                 className="absolute inset-0 z-0"
             >
 
-                {/* 🔥 Desktop & Mobile Floral Background */}
+                {/* 🔥 Desktop Image (md and above) */}
                 <div
-                    className="absolute inset-0 bg-[url('/images/blingish/floral_hero.png')] bg-cover bg-center"
-                    style={{ filter: "contrast(1.05) brightness(0.85)" }}
+                    className="hidden md:block absolute inset-0 bg-[url('/images/blingish/hero.jpeg')] bg-cover bg-center"
+                    style={{ filter: "contrast(1.1) brightness(0.75)" }}
                 />
 
-                {/* Animated Floating Petals Overlay */}
-                <div className="absolute inset-0 pointer-events-none overflow-hidden">
-                    {[...Array(12)].map((_, i) => (
-                        <motion.div
-                            key={i}
-                            initial={{
-                                opacity: 0,
-                                x: 0,
-                                y: 100,
-                                rotate: 0
-                            }}
-                            animate={{
-                                opacity: [0, 0.4, 0],
-                                x: [Math.random() * 800 - 400, Math.random() * 800 - 400],
-                                y: [-100, -1000],
-                                rotate: [0, 360]
-                            }}
-                            transition={{
-                                duration: Math.random() * 15 + 10,
-                                repeat: Infinity,
-                                ease: "linear",
-                                delay: Math.random() * 20
-                            }}
-                            className="absolute bottom-0 left-1/2 w-4 h-4 bg-[var(--accent-color)]/20 rounded-full blur-sm"
-                            style={{
-                                width: Math.random() * 20 + 5 + "px",
-                                height: Math.random() * 20 + 5 + "px",
-                            }}
-                        />
-                    ))}
-                </div>
+                {/* 🔥 Mobile Video (below md) */}
+                <video
+                    className="md:hidden absolute inset-0 w-full h-full object-cover"
+                    autoPlay
+                    muted
+                    loop
+                    playsInline
+                    style={{ filter: "contrast(1.1) brightness(0.75)" }}
+                >
+                    <source src="/images/blingish/mobile.mp4" type="video/mp4" />
+                </video>
 
             </motion.div>
 
@@ -70,22 +50,14 @@ const Hero = () => {
                 </span>
 
                 <motion.h1
-                    initial={{ opacity: 0, scale: 0.9 }}
-                    animate={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.5, duration: 1.5, ease: [0.22, 1, 0.36, 1] }}
                     className="flex flex-col gap-6 mb-12"
                 >
-                    <span className="text-[42px] md:text-[84px] lg:text-[110px] font-serif italic tracking-[0.05em] leading-[1.1] md:leading-[1] drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
-                        Shine <span className="not-italic">Bright</span>
+                    <span className="text-[42px] md:text-[84px] lg:text-[110px] font-serif italic tracking-[0.05em] leading-[1.1] md:leading-[0.9] drop-shadow-[0_10px_30px_rgba(0,0,0,0.5)]">
+                        Shine Bright
                     </span>
-                    <motion.span
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 0.6 }}
-                        transition={{ delay: 1.2, duration: 2 }}
-                        className="text-[10px] md:text-xs tracking-[0.6em] uppercase font-bold text-[var(--accent-color)] dark:text-[var(--accent-color)] filter brightness-150"
-                    >
-                        In Our Botanical Garden
-                    </motion.span>
                 </motion.h1>
 
                 <motion.div
