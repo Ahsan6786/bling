@@ -9,7 +9,7 @@ import { X, Sparkles } from "lucide-react";
 const Particle = ({ type, color }: { type?: string, color: string }) => {
     const randomX = useMemo(() => Math.random() * 100, []);
     const randomDelay = useMemo(() => Math.random() * 20, []);
-    const randomDuration = useMemo(() => 10 + Math.random() * 20, []);
+    const randomDuration = useMemo(() => 15 + Math.random() * 25, []);
     const randomSize = useMemo(() => 15 + Math.random() * 25, []);
 
     const getIcon = () => {
@@ -28,7 +28,7 @@ const Particle = ({ type, color }: { type?: string, color: string }) => {
             animate={{
                 y: "110vh",
                 x: `${randomX + (Math.random() * 10 - 5)}vw`,
-                opacity: [0, 0.4, 0.4, 0.4, 0],
+                opacity: [0, 0.25, 0.25, 0.25, 0], // Significantly lowered opacity as requested
                 rotate: 360
             }}
             transition={{
@@ -52,12 +52,25 @@ const Particle = ({ type, color }: { type?: string, color: string }) => {
 
 const ThemeManager = () => {
     const [activeOccasion, setActiveOccasion] = useState<Occasion | null>(null);
-    const [showBanner, setShowBanner] = useState(true);
+    const [showOverlay, setShowOverlay] = useState(false);
 
     useEffect(() => {
         const occasion = getCurrentOccasion();
         if (occasion) {
             setActiveOccasion(occasion);
+
+            // Check if shown in this session
+            const hasSeenOverlay = sessionStorage.getItem(`seen_occasion_${occasion.name}`);
+            if (!hasSeenOverlay) {
+                // Show fullscreen celebrate overlay after a short delay
+                const timer = setTimeout(() => {
+                    setShowOverlay(true);
+                    sessionStorage.setItem(`seen_occasion_${occasion.name}`, "true");
+                }, 1500);
+                return () => clearTimeout(timer);
+            }
+
+            // Inject theme specific CSS variables
             const root = document.documentElement;
             if (occasion.themeProps.accent) {
                 root.style.setProperty("--accent-color", occasion.themeProps.accent);
@@ -72,9 +85,9 @@ const ThemeManager = () => {
 
     return (
         <>
-            {/* Immersive Particles */}
+            {/* Immersive Particles - Lowered Opacity */}
             <div className="fixed inset-0 pointer-events-none z-[40] overflow-hidden">
-                {[...Array(20)].map((_, i) => (
+                {[...Array(15)].map((_, i) => (
                     <Particle
                         key={i}
                         type={activeOccasion.themeProps.particleType}
@@ -83,76 +96,100 @@ const ThemeManager = () => {
                 ))}
             </div>
 
-            {/* Premium Theme Banner */}
+            {/* Premium Fullscreen Occasion Celebration */}
             <AnimatePresence>
-                {showBanner && (
+                {showOverlay && (
                     <motion.div
-                        initial={{ y: -100, opacity: 0 }}
-                        animate={{ y: 0, opacity: 1 }}
-                        exit={{ y: -100, opacity: 0 }}
-                        transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-                        className="fixed top-28 left-1/2 -translate-x-1/2 z-[1001] w-[calc(100%-2rem)] max-w-xl"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        className="fixed inset-0 z-[2000] flex items-center justify-center bg-black/40 backdrop-blur-xl px-6"
                     >
-                        <div
-                            className="relative overflow-hidden rounded-[2.5rem] border border-[var(--border-color)] shadow-[0_40px_100px_rgba(0,0,0,0.15)] group"
-                            style={{ background: 'var(--card-bg)', backdropFilter: 'blur(20px)' }}
+                        {/* Background Animated Glow */}
+                        <motion.div
+                            className="absolute inset-0 opacity-30"
+                            style={{ background: activeOccasion.themeProps.gradient }}
+                            animate={{
+                                scale: [1, 1.2, 1],
+                                opacity: [0.2, 0.4, 0.2]
+                            }}
+                            transition={{ duration: 10, repeat: Infinity }}
+                        />
+
+                        <motion.div
+                            initial={{ scale: 0.8, y: 50, opacity: 0 }}
+                            animate={{ scale: 1, y: 0, opacity: 1 }}
+                            exit={{ scale: 0.8, y: 30, opacity: 0 }}
+                            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                            className="relative w-full max-w-2xl bg-[var(--card-bg)] rounded-[3rem] p-12 md:p-20 text-center border border-white/10 shadow-[0_50px_100px_rgba(0,0,0,0.3)]"
                         >
-                            {/* Animated Background Glow */}
+                            {/* Icon / Emoji Section */}
                             <motion.div
-                                className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity"
+                                initial={{ rotate: -15, scale: 0 }}
+                                animate={{ rotate: 0, scale: 1 }}
+                                transition={{ delay: 0.3, type: "spring" }}
+                                className="w-24 h-24 md:w-32 md:h-32 rounded-[2rem] mx-auto mb-10 flex items-center justify-center shadow-2xl relative overflow-hidden"
                                 style={{ background: activeOccasion.themeProps.gradient }}
-                                animate={{
-                                    scale: [1, 1.3, 1],
-                                }}
-                                transition={{ duration: 15, repeat: Infinity }}
-                            />
+                            >
+                                <div className="absolute inset-0 bg-white/20 backdrop-blur-sm" />
+                                <span className="text-5xl md:text-7xl relative z-10 drop-shadow-lg">
+                                    {activeOccasion.themeProps.emoji}
+                                </span>
+                            </motion.div>
 
-                            <div className="relative p-6 px-10 flex items-center justify-between gap-8">
-                                <div className="flex items-center gap-6">
-                                    <div
-                                        className="w-16 h-16 rounded-[1.5rem] flex items-center justify-center relative overflow-hidden shadow-2xl"
-                                        style={{ background: activeOccasion.themeProps.gradient }}
-                                    >
-                                        <div className="absolute inset-0 bg-white/10 backdrop-blur-sm" />
-                                        <span className="text-3xl relative z-10 drop-shadow-lg">{activeOccasion.themeProps.emoji}</span>
-                                    </div>
-
-                                    <div>
-                                        <div className="flex items-center gap-3 mb-1.5">
-                                            <span
-                                                className="text-[10px] uppercase tracking-[0.5em] font-black"
-                                                style={{ color: activeOccasion.themeProps.accent }}
-                                            >
-                                                {activeOccasion.name}
-                                            </span>
-                                            <span className="w-1.5 h-1.5 rounded-full animate-pulse" style={{ backgroundColor: activeOccasion.themeProps.accent }} />
-                                        </div>
-                                        <h3 className="text-xl md:text-2xl font-serif italic text-[var(--text-color)] leading-tight tracking-tight">
-                                            {activeOccasion.themeProps.greeting}
-                                        </h3>
-                                    </div>
-                                </div>
-
-                                <button
-                                    onClick={() => setShowBanner(false)}
-                                    className="w-12 h-12 rounded-full flex items-center justify-center bg-[var(--border-color)] hover:bg-[var(--accent-color)]/10 transition-colors group"
-                                >
-                                    <X size={18} className="text-[var(--text-color)] opacity-60 group-hover:opacity-100 group-hover:rotate-90 transition-all duration-500" />
-                                </button>
-                            </div>
-
-                            {/* Luxury Progression Bar */}
+                            {/* Text Section */}
                             <motion.div
-                                className="h-1.5 w-full"
-                                initial={{ scaleX: 0 }}
-                                animate={{ scaleX: 1 }}
-                                transition={{ duration: 2.5, delay: 0.5 }}
-                                style={{
-                                    background: activeOccasion.themeProps.gradient,
-                                    transformOrigin: 'left'
-                                }}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: 0.5 }}
+                            >
+                                <span
+                                    className="text-[12px] uppercase tracking-[0.6em] font-black mb-6 block"
+                                    style={{ color: activeOccasion.themeProps.accent }}
+                                >
+                                    {activeOccasion.name} Edition
+                                </span>
+                                <h2 className="text-4xl md:text-6xl font-serif italic text-[var(--text-color)] leading-[1.1] mb-8 drop-shadow-sm">
+                                    {activeOccasion.themeProps.greeting}
+                                </h2>
+                                <p className="text-sm md:text-lg text-[var(--text-color)] opacity-60 max-w-md mx-auto leading-relaxed mb-12">
+                                    A special celebration of our artisanal legacy, crafted just for this moment.
+                                </p>
+                            </motion.div>
+
+                            {/* Action / Close */}
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ delay: 0.8 }}
+                                className="flex flex-col md:flex-row items-center justify-center gap-6"
+                            >
+                                <button
+                                    onClick={() => setShowOverlay(false)}
+                                    className="px-12 py-5 bg-[var(--accent-color)] text-white rounded-full text-[11px] uppercase tracking-[0.4em] font-bold shadow-2xl hover:scale-105 transition-all duration-500"
+                                >
+                                    Explore Edition
+                                </button>
+                                <button
+                                    onClick={() => setShowOverlay(false)}
+                                    className="p-5 text-[var(--text-color)] opacity-40 hover:opacity-100 transition-opacity"
+                                >
+                                    <X size={24} />
+                                </button>
+                            </motion.div>
+
+                            {/* Decorative Sparkles */}
+                            <Sparkles
+                                className="absolute top-12 left-12 opacity-20 animate-pulse"
+                                style={{ color: activeOccasion.themeProps.accent }}
+                                size={24}
                             />
-                        </div>
+                            <Sparkles
+                                className="absolute bottom-12 right-12 opacity-20 animate-pulse"
+                                style={{ color: activeOccasion.themeProps.accent }}
+                                size={24}
+                            />
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
