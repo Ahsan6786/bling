@@ -46,12 +46,17 @@ const Story = () => {
                             />
                         </motion.div>
 
-                        {/* Floating Signature Accent */}
                         <motion.div
                             style={{ x }}
-                            className="absolute -right-8 -bottom-8 bg-[var(--card-bg)] p-10 rounded-[2rem] shadow-2xl hidden md:block border border-[var(--border-color)]"
+                            className="absolute -right-10 -bottom-10 bg-[var(--card-bg)] p-6 md:p-8 rounded-[2.5rem] shadow-2xl hidden md:flex items-center justify-center border border-[var(--border-color)] group-hover:scale-105 transition-transform duration-700"
                         >
-                            <span className="text-3xl md:text-5xl font-serif italic text-[var(--accent-color)] opacity-30">◈</span>
+                            <div className="w-10 h-10 md:w-16 md:h-16 relative">
+                                <img
+                                    src="/images/blingish/favicon.png"
+                                    alt="Blingish Logo"
+                                    className="w-full h-full object-contain opacity-60 grayscale hover:grayscale-0 hover:opacity-100 transition-all duration-700"
+                                />
+                            </div>
                         </motion.div>
                     </div>
 
