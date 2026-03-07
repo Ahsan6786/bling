@@ -122,6 +122,15 @@
   .mask-radial {
     mask-image: radial-gradient(circle, black 50%, transparent 100%);
   }
+
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
 }
 
 /* Custom transitions and animations */

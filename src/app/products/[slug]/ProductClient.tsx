@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ArrowLeft, ShoppingBag, Heart, ShieldCheck, Truck, RotateCcw, Share2, Check } from "lucide-react";
+import { ArrowLeft, ShoppingBag, Heart, ShieldCheck, Truck, RotateCcw, Share2, Check, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { Product } from "@/data/products";
 import { useCart } from "@/context/cart-context";
@@ -98,210 +98,193 @@ const ProductClient = ({ product }: ProductClientProps) => {
             />
             <div className="container mx-auto px-6 md:px-12">
 
-                {/* Header Actions */}
-                <div className="flex justify-between items-center mb-16">
+                {/* Breadcrumbs / Back */}
+                <div className="flex justify-between items-center mb-12 md:mb-16">
                     <Link href="/collection" className="flex items-center gap-3 text-[10px] uppercase tracking-[0.4em] font-bold text-gray-400 hover:text-[var(--accent-color)] transition-colors group">
                         <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
                         Back to Collection
                     </Link>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 lg:gap-32 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-start">
 
-                    {/* Left: Dynamic Image Gallery */}
-                    <div className="flex flex-col gap-10">
+                    {/* Left: Image Gallery (8 columns on lg) */}
+                    <div className="lg:col-span-7 flex flex-col md:flex-row gap-6 md:sticky md:top-32">
+                        {/* Thumbnails - Vertical on desktop, Horizontal on mobile */}
+                        <div className="order-2 md:order-1 flex md:flex-col gap-4 overflow-x-auto md:overflow-y-auto no-scrollbar pb-2">
+                            {product.images.map((img, idx) => (
+                                <button
+                                    key={idx}
+                                    onClick={() => handleThumbnailClick(idx)}
+                                    className={`relative flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-2xl overflow-hidden border-2 transition-all duration-500 bg-white ${activeImage === idx ? 'border-[var(--accent-color)] scale-105 shadow-md' : 'border-[var(--border-color)] opacity-60 hover:opacity-100 hover:border-gray-300'}`}
+                                >
+                                    <img src={img} className="w-full h-full object-contain p-2" alt={`${product.name} view ${idx + 1}`} loading="lazy" />
+                                </button>
+                            ))}
+                        </div>
+
+                        {/* Main Image Container */}
                         <div
-                            className={`relative aspect-square rounded-[2rem] md:rounded-[4rem] overflow-hidden bg-[var(--card-bg)] shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-[var(--border-color)] ${isZooming ? 'cursor-zoom-out' : 'cursor-zoom-in'}`}
+                            className={`order-1 md:order-2 flex-grow relative aspect-[4/5] md:aspect-square rounded-[2.5rem] md:rounded-[4rem] overflow-hidden bg-white shadow-[0_20px_60px_rgba(0,0,0,0.03)] border border-[var(--border-color)] ${isZooming ? 'cursor-zoom-out' : 'cursor-zoom-in'}`}
                             onMouseMove={handleMouseMove}
                             onClick={handleImageClick}
                         >
                             <motion.img
                                 key={activeImage}
-                                initial={{ opacity: 0, scale: 1 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                transition={{ duration: 0.6 }}
                                 src={product.images[activeImage]}
-                                alt={`${product.name} - Close-up view of premium artificial jewellery`}
+                                alt={`${product.name} - Close-up view`}
                                 fetchPriority="high"
-                                className={`w-full h-full object-contain p-10 md:p-20 transition-opacity duration-300 ${isZooming ? 'opacity-0' : 'opacity-100'}`}
+                                className={`w-full h-full object-contain p-8 md:p-12 transition-opacity duration-300 ${isZooming ? 'opacity-0' : 'opacity-100'}`}
                             />
 
-                            {/* Zoom Overlay — only visible after user clicks */}
+                            {/* Zoom Overlay */}
                             <div
-                                className={`absolute inset-0 pointer-events-none transition-opacity duration-300 bg-[var(--card-bg)] ${isZooming ? 'opacity-100' : 'opacity-0'}`}
+                                className={`absolute inset-0 pointer-events-none transition-opacity duration-300 bg-white ${isZooming ? 'opacity-100' : 'opacity-0'}`}
                                 style={{
                                     backgroundImage: `url(${product.images[activeImage]})`,
                                     backgroundPosition: `${zoomPos.x}% ${zoomPos.y}%`,
-                                    backgroundSize: '280%',
+                                    backgroundSize: '250%',
                                     backgroundRepeat: 'no-repeat'
                                 }}
                             />
 
-                            {/* Tap to zoom hint on mobile */}
+                            {/* Mobile Zoom Hint */}
                             {!isZooming && (
-                                <div className="absolute bottom-3 right-3 md:hidden bg-black/40 text-white text-[8px] px-2 py-1 rounded-full tracking-wider uppercase backdrop-blur-sm">
+                                <div className="absolute bottom-6 right-6 md:hidden bg-black/40 text-white text-[8px] px-3 py-1.5 rounded-full tracking-[0.2em] uppercase font-bold backdrop-blur-md">
                                     Tap to Zoom
                                 </div>
                             )}
-
-                            <div className="absolute bottom-10 left-10 flex gap-4 z-10" onClick={(e) => e.stopPropagation()}>
-                                {product.images.map((img, idx) => (
-                                    <button
-                                        key={idx}
-                                        onClick={() => handleThumbnailClick(idx)}
-                                        className={`w-14 h-14 rounded-2xl overflow-hidden border-2 transition-all duration-500 ${activeImage === idx ? 'border-[var(--accent-color)] scale-110 shadow-lg shadow-black/10' : 'border-[var(--border-color)] opacity-40 hover:opacity-100'}`}
-                                    >
-                                        <img src={img} className="w-full h-full object-contain p-1" alt={`${product.name} view ${idx + 1}`} loading="lazy" />
-                                    </button>
-                                ))}
-                            </div>
                         </div>
+                    </div>
 
-                        {/* CTAs moved under image */}
+                    {/* Right: Product Informatics (5 columns on lg) */}
+                    <div className="lg:col-span-5 flex flex-col space-y-12">
                         <motion.div
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
-                            transition={{ duration: 1, delay: 0.8 }}
-                            className="flex flex-col gap-6"
-                        >
-                            <div className="flex gap-3 md:gap-6">
-                                <button
-                                    onClick={() => addToCart(product.name, product.price, product.images[0], product.slug)}
-                                    className="flex-grow bg-[var(--text-color)] text-[var(--bg-color)] py-3 md:py-2 px-3 md:px-4 rounded-full text-[8px] md:text-[10px] uppercase font-bold tracking-[0.2em] md:tracking-[0.4em] hover:bg-[var(--accent-color)] dark:hover:text-black transition-all duration-700 flex items-center justify-center gap-2 md:gap-4 group shadow-xl"
-                                >
-                                    <ShoppingBag size={16} className="group-hover:scale-110 transition-transform" />
-                                    Add to Cart
-                                </button>
-                                <div className="flex gap-2">
-                                    <button className="p-3 md:p-2.5 rounded-full border border-[var(--border-color)] hover:border-[var(--accent-color)] hover:text-[var(--accent-color)] transition-all duration-500">
-                                        <Heart size={16} />
-                                    </button>
-                                    <button
-                                        onClick={handleShare}
-                                        className="p-3 md:p-2.5 rounded-full border border-[var(--border-color)] hover:border-[var(--accent-color)] hover:text-[var(--accent-color)] transition-all duration-500 relative"
-                                    >
-                                        {isCopied ? <Check size={16} /> : <Share2 size={16} />}
-                                    </button>
-                                </div>
-                            </div>
-
-                            <a
-                                href={`https://wa.me/919546243078?text=Hello, I am interested in the ${product.name}. Can you provide more details?`}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="w-full flex items-center justify-center gap-3 bg-[var(--bg-color)] border border-green-600/30 text-green-600 py-3 md:py-2 rounded-full text-[8px] md:text-[10px] uppercase font-bold tracking-[0.2em] md:tracking-[0.4em] hover:bg-green-600 hover:text-white transition-all duration-700 shadow-lg shadow-green-600/5 group"
-                            >
-                                <WhatsAppIcon size={16} className="group-hover:scale-110 transition-transform" />
-                                Inquire on WhatsApp
-                            </a>
-                        </motion.div>
-                    </div>
-
-                    {/* Right: Product Informatics */}
-                    <div className="flex flex-col">
-                        <motion.div
-                            initial={{ opacity: 0, y: 30 }}
-                            animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 0.8 }}
                         >
-                            <div className="flex flex-wrap items-center gap-4 mb-6">
-                                <span className="text-[10px] tracking-[0.6em] uppercase text-[var(--accent-color)] font-bold">
+                            {/* Badges */}
+                            <div className="flex flex-wrap items-center gap-4 mb-8">
+                                <span className="text-[10px] tracking-[0.5em] uppercase text-[var(--accent-color)] font-bold">
                                     {product.category}
                                 </span>
                                 {product.trending && (
-                                    <span className="bg-[var(--accent-color)]/10 text-[var(--accent-color)] text-[8px] px-3 py-1 rounded-full uppercase tracking-[0.2em] font-bold border border-[var(--accent-color)]/20">
+                                    <div className="flex items-center gap-2 bg-[var(--accent-color)]/5 text-[var(--accent-color)] text-[9px] px-3 py-1.5 rounded-full uppercase tracking-[0.2em] font-bold border border-[var(--accent-color)]/10">
+                                        <Sparkles size={10} />
                                         Trending
-                                    </span>
+                                    </div>
                                 )}
                                 {product.soldInLast7Days && (
-                                    <span className="text-[9px] text-green-600 font-bold tracking-widest uppercase italic opacity-80">
-                                        {product.soldInLast7Days}+ sold in last 7 days
+                                    <span className="text-[10px] text-green-600/70 font-bold tracking-widest uppercase">
+                                        {product.soldInLast7Days} sold recently
                                     </span>
                                 )}
                             </div>
-                            <h1 className="text-5xl md:text-7xl lg:text-8xl font-light tracking-tight uppercase leading-[0.9] mb-8 text-[var(--text-color)]">
-                                {product.name.split(' ').map((word, i) => (
-                                    <React.Fragment key={i}>
-                                        {i % 2 !== 0 ? <span className="italic font-serif block">{word}</span> : word + ' '}
-                                    </React.Fragment>
-                                ))}
-                            </h1>
-                            <p className="text-2xl md:text-3xl font-light tracking-[0.2em] mb-16 text-[var(--text-color)] opacity-60">
-                                {product.price === 0 ? "₹XX" : `₹${product.price.toLocaleString('en-IN')}`}
-                            </p>
 
-                            <motion.div
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ duration: 1, delay: 0.2 }}
-                                className="space-y-12"
-                            >
-                                <section>
-                                    <p className="text-xl font-light leading-relaxed text-gray-400 max-w-xl">
+                            {/* Title & Price */}
+                            <h1 className="text-5xl md:text-7xl font-serif italic tracking-tight text-[var(--text-color)] leading-[0.9] mb-8">
+                                {product.name}
+                            </h1>
+
+                            <div className="flex items-baseline gap-4 mb-12">
+                                <span className="text-3xl md:text-4xl font-light tracking-[0.1em] text-[var(--text-color)]">
+                                    {product.price === 0 ? "₹XX" : `₹${product.price.toLocaleString('en-IN')}`}
+                                </span>
+                                <span className="text-xs uppercase tracking-[0.2em] text-gray-400 font-medium">Inclusive of all taxes</span>
+                            </div>
+
+                            {/* Action Buttons */}
+                            <div className="flex flex-col gap-4 mb-12">
+                                <div className="flex gap-3">
+                                    <button
+                                        onClick={() => addToCart(product.name, product.price, product.images[0], product.slug)}
+                                        className="flex-grow bg-[var(--accent-color)] text-white py-5 px-8 rounded-full text-[11px] uppercase font-bold tracking-[0.4em] hover:bg-[var(--accent-color)]/90 transition-all duration-500 flex items-center justify-center gap-3 shadow-xl shadow-[var(--accent-color)]/10 group"
+                                    >
+                                        <ShoppingBag size={18} className="group-hover:scale-110 transition-transform" />
+                                        Add to Cart
+                                    </button>
+                                    <button className="w-16 h-16 flex items-center justify-center rounded-full border border-[var(--border-color)] text-[var(--text-color)] hover:border-[var(--accent-color)] hover:text-[var(--accent-color)] transition-all duration-500 bg-white">
+                                        <Heart size={20} />
+                                    </button>
+                                    <button
+                                        onClick={handleShare}
+                                        className="w-16 h-16 flex items-center justify-center rounded-full border border-[var(--border-color)] text-[var(--text-color)] hover:border-[var(--accent-color)] hover:text-[var(--accent-color)] transition-all duration-500 bg-white relative"
+                                    >
+                                        {isCopied ? <Check size={20} /> : <Share2 size={20} />}
+                                    </button>
+                                </div>
+
+                                <a
+                                    href={`https://wa.me/919546243078?text=Hello Blingish, I'm interested in the ${product.name}. Could you share more details?`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="w-full h-16 flex items-center justify-center gap-3 bg-white border border-green-600/20 text-green-600 rounded-full text-[11px] uppercase font-bold tracking-[0.4em] hover:bg-green-600 hover:text-white transition-all duration-700 shadow-lg shadow-green-600/5 group"
+                                >
+                                    <WhatsAppIcon size={18} className="group-hover:scale-110 transition-transform" />
+                                    Personal Concierge
+                                </a>
+                            </div>
+
+                            {/* Description & Specs */}
+                            <div className="space-y-12 pt-12 border-t border-[var(--border-color)]">
+                                <div>
+                                    <h3 className="text-[10px] uppercase tracking-[0.4em] font-bold mb-4 text-[var(--accent-color)]">The Story</h3>
+                                    <p className="text-lg font-light leading-relaxed text-gray-500">
                                         {product.description}
                                     </p>
-                                </section>
+                                </div>
 
-                                {/* Technical Specs Grid */}
-                                <motion.div
-                                    initial={{ opacity: 0 }}
-                                    animate={{ opacity: 1 }}
-                                    transition={{ duration: 1.5, delay: 0.6 }}
-                                    className="grid grid-cols-2 gap-y-10 border-t border-[var(--border-color)] pt-12"
-                                >
+                                <div className="grid grid-cols-2 gap-y-10">
                                     <div>
-                                        <p className="text-[9px] uppercase tracking-[0.3em] font-bold text-gray-400 mb-2">Metal</p>
+                                        <p className="text-[9px] uppercase tracking-[0.3em] font-bold text-gray-400 mb-2">Metal Finish</p>
                                         <p className="text-xs uppercase tracking-widest font-bold text-[var(--text-color)]">{product.specs.metal}</p>
                                     </div>
                                     <div>
-                                        <p className="text-[9px] uppercase tracking-[0.3em] font-bold text-gray-400 mb-2">Stone</p>
+                                        <p className="text-[9px] uppercase tracking-[0.3em] font-bold text-gray-400 mb-2">Ornamentation</p>
                                         <p className="text-xs uppercase tracking-widest font-bold text-[var(--text-color)]">{product.specs.stone}</p>
                                     </div>
                                     <div>
-                                        <p className="text-[9px] uppercase tracking-[0.3em] font-bold text-gray-400 mb-2">Origin</p>
+                                        <p className="text-[9px] uppercase tracking-[0.3em] font-bold text-gray-400 mb-2">Artisan Origin</p>
                                         <p className="text-xs uppercase tracking-widest font-bold text-[var(--text-color)]">{product.specs.origin}</p>
                                     </div>
                                     <div>
-                                        <p className="text-[9px] uppercase tracking-[0.3em] font-bold text-gray-400 mb-2">Closure</p>
+                                        <p className="text-[9px] uppercase tracking-[0.3em] font-bold text-gray-400 mb-2">Secure Closure</p>
                                         <p className="text-xs uppercase tracking-widest font-bold text-[var(--text-color)]">{product.specs.closure}</p>
                                     </div>
-                                </motion.div>
-                            </motion.div>
-
+                                </div>
+                            </div>
                         </motion.div>
                     </div>
 
                 </div>
 
-                {/* Trust Section */}
+                {/* Assurance Section */}
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
-                    transition={{ duration: 2, delay: 0.5 }}
-                    className="mt-32 pt-20 border-t border-[var(--border-color)] grid grid-cols-1 md:grid-cols-3 gap-12 text-center"
+                    transition={{ duration: 1.5 }}
+                    className="mt-32 pt-20 border-t border-[var(--border-color)] grid grid-cols-1 md:grid-cols-3 gap-12"
                 >
-                    <div className="flex flex-col items-center gap-6">
-                        <ShieldCheck className="text-[var(--accent-color)] opacity-40" size={32} />
-                        <div>
-                            <p className="text-[10px] uppercase tracking-[0.3em] font-bold mb-2 text-[var(--text-color)]">Hand-Finished Quality</p>
-                            <p className="text-[10px] uppercase tracking-widest text-gray-400">Artisanal Craftsmanship</p>
+                    {[
+                        { icon: ShieldCheck, title: "Artisan Quality", subtitle: "Hand-finished masterworks" },
+                        { icon: Truck, title: "Secure Delivery", subtitle: "Trusted transit Pan-India" },
+                        { icon: RotateCcw, title: "Aesthetic Luxury", subtitle: "Modern timeless designs" }
+                    ].map((item, i) => (
+                        <div key={i} className="flex flex-col items-center text-center space-y-4 group">
+                            <div className="p-4 rounded-full bg-[var(--card-bg)] border border-[var(--border-color)] group-hover:scale-110 transition-transform duration-500">
+                                <item.icon className="text-[var(--accent-color)] opacity-60" size={24} />
+                            </div>
+                            <div>
+                                <h4 className="text-[10px] uppercase tracking-[0.3em] font-bold mb-1 text-[var(--text-color)]">{item.title}</h4>
+                                <p className="text-[9px] uppercase tracking-widest text-gray-400">{item.subtitle}</p>
+                            </div>
                         </div>
-                    </div>
-                    <div className="flex flex-col items-center gap-6">
-                        <Truck className="text-[var(--accent-color)] opacity-40" size={32} />
-                        <div>
-                            <p className="text-[10px] uppercase tracking-[0.3em] font-bold mb-2 text-[var(--text-color)]">Reliable Shipping</p>
-                            <p className="text-[10px] uppercase tracking-widest text-gray-400">Secure Delivery India-Wide</p>
-                        </div>
-                    </div>
-                    <div className="flex flex-col items-center gap-6">
-                        <RotateCcw className="text-[var(--accent-color)] opacity-40" size={32} />
-                        <div>
-                            <p className="text-[10px] uppercase tracking-[0.3em] font-bold mb-2 text-[var(--text-color)]">Aesthetic Finish</p>
-                            <p className="text-[10px] uppercase tracking-widest text-gray-400">Modern Jewelry Design</p>
-                        </div>
-                    </div>
+                    ))}
                 </motion.div>
 
             </div>
