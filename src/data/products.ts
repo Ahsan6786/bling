@@ -1258,6 +1258,118 @@ export const products: Product[] = [
             origin: "Artisan Studio, India",
             closure: "Adjustable Chain"
         }
+    },
+    {
+        id: "br-01",
+        slug: "celestial-flow-bracelet",
+        name: "Celestial Flow Bracelet",
+        price: 0,
+        category: "Bracelets",
+        images: ["/images/bracelets/br1.png", "/images/bracelets/br1.1.png"],
+        description: "A fluid and elegant bracelet that mimics the graceful movement of the night sky.",
+        provenance: "Part of our Celestial collection, capturing ethereal beauty.",
+        specs: {
+            metal: "Gold Toned Finish",
+            stone: "Clear Crystals",
+            origin: "Artisan Studio, India",
+            closure: "Adjustable Clasp"
+        }
+    },
+    {
+        id: "br-02",
+        slug: "gilded-link-bracelet",
+        name: "Gilded Link Bracelet",
+        price: 0,
+        category: "Bracelets",
+        images: ["/images/bracelets/br2.png", "/images/bracelets/br2.1.png"],
+        description: "Classic links reimagined with a high-polish gold tone for a sophisticated presence.",
+        provenance: "Hand-finished to ensure a seamless and luxurious feel on the wrist.",
+        specs: {
+            metal: "High-Polish Gold Tone",
+            stone: "None",
+            origin: "Artisan Studio, India",
+            closure: "Toggle Clasp"
+        }
+    },
+    {
+        id: "94",
+        slug: "we41-earrings",
+        name: "Midnight Glow Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we41.png", "/images/earrings/we41.1.png"],
+        description: "Capturing the mysterious glow of the midnight moon, these earrings are a statement of subtle power.",
+        provenance: "Designed in our London studio for the mysterious and confident.",
+        specs: {
+            metal: "Silver Toned Finish",
+            stone: "Dark Zirconia",
+            origin: "London Atelier",
+            closure: "Push Back"
+        }
+    },
+    {
+        id: "95",
+        slug: "we42-earrings",
+        name: "Verdant Breeze Earrings",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we42.png", "/images/earrings/we42.1.png"],
+        description: "Soft green accents meeting delicate gold-toned patterns for a look of natural grace.",
+        provenance: "Inspired by the spring breezes of the Himalayan foothills.",
+        specs: {
+            metal: "Gold Toned Plating",
+            stone: "Green Crystal Accents",
+            origin: "Artisan Studio, India",
+            closure: "Butterfly Back"
+        }
+    },
+    {
+        id: "96",
+        slug: "we43-earrings",
+        name: "Rose Quartz Serenity Studs",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we43.png", "/images/earrings/we43.1.png"],
+        description: "Understated studs featuring the soft, calming pink of rose quartz-style crystals.",
+        provenance: "Part of our Serenity collection, promoting inner peace and beauty.",
+        specs: {
+            metal: "Rose Gold Toned",
+            stone: "Rose Quartz Style Zirconia",
+            origin: "Artisan Studio, India",
+            closure: "Friction Post"
+        }
+    },
+    {
+        id: "97",
+        slug: "we44-earrings",
+        name: "Silver Mist Hoops",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we44.png", "/images/earrings/we44.1.png"],
+        description: "Modern silver-toned hoops with a frosted finish for a chic and contemporary look.",
+        provenance: "Reflecting the cool, misty mornings of urban landscapes.",
+        specs: {
+            metal: "Polished Silver Finish",
+            stone: "None",
+            origin: "London Atelier",
+            closure: "Hinge Clasp"
+        }
+    },
+    {
+        id: "98",
+        slug: "we45-earrings",
+        name: "Golden Orchid Studs",
+        price: 0,
+        category: "Earrings",
+        images: ["/images/earrings/we45.png", "/images/earrings/we45.1.png"],
+        description: "Intricately detailed studs that capture the exotic beauty of a golden orchid.",
+        provenance: "Each piece is hand-molded to preserve the delicate texture of real orchid petals.",
+        specs: {
+            metal: "Gold Toned Plating",
+            stone: "Pearl Accents",
+            origin: "Artisan Studio, India",
+            closure: "Push Back"
+        }
     }
 ];
 

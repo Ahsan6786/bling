@@ -14,7 +14,7 @@ const CollectionClient = ({ products }: CollectionClientProps) => {
     const [copiedId, setCopiedId] = useState<string | null>(null);
     const [activeFilter, setActiveFilter] = useState("All");
 
-    const filters = ["All", "Traditional", "Earrings", "Pendant/Necklace"];
+    const filters = ["All", "Traditional", "Earrings", "Pendant/Necklace", "Bracelets"];
     const traditionalIds = ["52", "53", "earring-01", "35", "36", "37", "38", "39"];
 
     const filteredProducts = activeFilter === "All"
