@@ -554,7 +554,7 @@ export const products: Product[] = [
     {
         id: "53",
         slug: "eternal-blossom-earrings",
-        name: "Eternal Blossom Earrings",
+        name: "Eternal Blossom Ear",
         price: 399,
         category: "Earrings",
         images: ["/images/earrings/ear10.png", "/images/earrings/ear10.1.png"],

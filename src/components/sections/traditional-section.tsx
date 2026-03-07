@@ -8,7 +8,7 @@ import { products } from "@/data/products";
 
 const TraditionalSection = () => {
     // Product IDs for traditional section
-    const traditionalIds = ["52", "53", "earring-01", "35", "36", "37", "38", "39"];
+    const traditionalIds = ["52", "53", "earring-01", "35", "36", "37", "38", "39", "95", "96", "91", "92", "93", "94", "82"];
     const traditionalProducts = products.filter(p => traditionalIds.includes(p.id));
 
     // Maintain the order of IDs
