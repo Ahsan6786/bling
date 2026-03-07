@@ -60,6 +60,43 @@ const StoryPage = () => {
                         initial={{ opacity: 0, y: 30 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
+                        className="mt-40 grid grid-cols-1 md:grid-cols-3 gap-12"
+                    >
+                        <div className="p-10 rounded-3xl bg-[var(--card-bg)] border border-[var(--border-color)] group hover:border-[var(--accent-color)]/30 transition-all duration-700">
+                            <div className="w-12 h-12 bg-[var(--accent-color)]/10 rounded-2xl flex items-center justify-center mb-8 text-[var(--accent-color)] group-hover:scale-110 transition-transform duration-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" /></svg>
+                            </div>
+                            <h3 className="text-sm font-bold uppercase tracking-widest mb-4">Certified Purity</h3>
+                            <p className="text-xs text-[var(--text-color)] opacity-50 leading-relaxed font-light">
+                                Every piece is rigorously tested for material purity and skin-friendliness, ensuring high-quality hypoallergenic wear.
+                            </p>
+                        </div>
+
+                        <div className="p-10 rounded-3xl bg-[var(--card-bg)] border border-[var(--border-color)] group hover:border-[var(--accent-color)]/30 transition-all duration-700">
+                            <div className="w-12 h-12 bg-[var(--accent-color)]/10 rounded-2xl flex items-center justify-center mb-8 text-[var(--accent-color)] group-hover:scale-110 transition-transform duration-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><circle cx="12" cy="12" r="10" /><path d="m16 10-4 4-2-2" /></svg>
+                            </div>
+                            <h3 className="text-sm font-bold uppercase tracking-widest mb-4">Artisanal Ethos</h3>
+                            <p className="text-xs text-[var(--text-color)] opacity-50 leading-relaxed font-light">
+                                We work directly with master craftsmen in Bihar, preserving traditional heritage while providing fair, ethical wages.
+                            </p>
+                        </div>
+
+                        <div className="p-10 rounded-3xl bg-[var(--card-bg)] border border-[var(--border-color)] group hover:border-[var(--accent-color)]/30 transition-all duration-700">
+                            <div className="w-12 h-12 bg-[var(--accent-color)]/10 rounded-2xl flex items-center justify-center mb-8 text-[var(--accent-color)] group-hover:scale-110 transition-transform duration-500">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" /></svg>
+                            </div>
+                            <h3 className="text-sm font-bold uppercase tracking-widest mb-4">Lifetime Promise</h3>
+                            <p className="text-xs text-[var(--text-color)] opacity-50 leading-relaxed font-light">
+                                Our commitment doesn't end at delivery. We offer guidance on jewelry care to ensure your pieces remain radiant for a lifetime.
+                            </p>
+                        </div>
+                    </motion.div>
+
+                    <motion.div
+                        initial={{ opacity: 0, y: 30 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
                         className="mt-40 p-12 md:p-24 bg-[var(--card-bg)] rounded-[3rem] border border-[var(--border-color)] text-center"
                     >
                         <p className="text-2xl md:text-4xl font-serif italic mb-12 leading-relaxed text-[var(--text-color)] opacity-80 max-w-4xl mx-auto">

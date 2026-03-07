@@ -161,7 +161,7 @@ const ContactPage = () => {
                                     value={formData.name}
                                     onChange={handleChange}
                                     className="bg-transparent border-b border-[var(--border-color)] py-2 focus:border-[var(--accent-color)] outline-none transition-colors font-light text-sm text-[var(--text-color)]"
-                                    placeholder="John Doe"
+                                    placeholder="Harsh"
                                 />
                             </div>
 

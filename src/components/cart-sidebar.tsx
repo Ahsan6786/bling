@@ -139,6 +139,21 @@ const CartSidebar = () => {
                             )}
                         </div>
 
+                        {/* Free Gift Notice */}
+                        <motion.div
+                            initial={{ opacity: 0, scale: 0.95 }}
+                            animate={{ opacity: 1, scale: 1 }}
+                            className="mb-8 p-4 rounded-2xl bg-[#F5E6D3] dark:bg-[#3D3022] border border-[#8B4A3A]/10 flex items-center gap-4 group"
+                        >
+                            <div className="w-10 h-10 bg-white dark:bg-black/20 rounded-xl flex items-center justify-center shrink-0 shadow-sm">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#8B4A3A" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polyline points="20 12 20 22 4 22 4 12" /><rect width="20" height="5" x="2" y="7" /><line x1="12" x2="12" y1="22" y2="7" /><path d="M12 7H7.5a2.5 2.5 0 0 1 0-5C11 2 12 7 12 7z" /><path d="M12 7h4.5a2.5 2.5 0 0 0 0-5C13 2 12 7 12 7z" /></svg>
+                            </div>
+                            <div>
+                                <h4 className="text-[10px] uppercase tracking-[0.1em] font-bold text-[#8B4A3A] dark:text-[#D4A574]">Free Mystery Gift</h4>
+                                <p className="text-[9px] text-[#8B4A3A] dark:text-[#D4A574] opacity-70">Applied to your first order</p>
+                            </div>
+                        </motion.div>
+
                         <div className="border-t border-[var(--border-color)] pt-8">
                             <div className="flex justify-between items-center mb-8">
                                 <span className="text-sm uppercase tracking-widest font-medium opacity-60">

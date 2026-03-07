@@ -180,6 +180,8 @@ const CartClient = () => {
                     </motion.div>
                 ) : (
                     <div className="flex flex-col gap-12">
+                        {/* Gift Section */}
+                        <FreeGiftSection />
 
                         {/* Cart Items */}
                         <ul className="flex flex-col gap-4">
@@ -252,25 +254,45 @@ const CartClient = () => {
                             </AnimatePresence>
                         </ul>
 
-                        {/* Gift Section */}
-                        <FreeGiftSection />
 
                         {/* Coupon Section */}
-                        {(total > 999) && (
-                            <div className="flex flex-col gap-4">
-                                <h2 className="text-[9px] uppercase tracking-[0.4em] font-bold opacity-40 text-[var(--text-color)] px-2">
-                                    Available Offers
-                                </h2>
-                                <div className="grid grid-cols-1 gap-4">
-                                    {total > 2499 && (
-                                        <CouponCard code="BLING30" rate={30} active={appliedCoupon === 'BLING30'} />
-                                    )}
-                                    {total > 999 && (
-                                        <CouponCard code="BLING5" rate={5} active={appliedCoupon === 'BLING5'} />
-                                    )}
-                                </div>
+                        <div className="flex flex-col gap-4">
+                            <h2 className="text-[9px] uppercase tracking-[0.4em] font-bold opacity-40 text-[var(--text-color)] px-2">
+                                Available Offers
+                            </h2>
+                            <div className="grid grid-cols-1 gap-4">
+                                {/* First Gift Reward */}
+                                <motion.div
+                                    initial={{ opacity: 0, y: 10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    className="relative flex bg-[var(--card-bg)] rounded-xl overflow-hidden shadow-sm border border-[var(--accent-color)]/30 group"
+                                >
+                                    <div className="w-12 bg-[var(--accent-color)]/10 flex items-center justify-center border-r border-dashed border-[var(--accent-color)]/20 relative">
+                                        <div className="absolute top-1/2 -left-2 w-4 h-4 rounded-full bg-[var(--bg-color)] -translate-y-1/2" />
+                                        <span className="rotate-[-90deg] whitespace-nowrap text-[8px] font-bold tracking-[0.2em] text-[var(--accent-color)] uppercase">
+                                            FREE GIFT
+                                        </span>
+                                    </div>
+                                    <div className="flex-1 p-5 flex justify-between items-center">
+                                        <div className="flex flex-col gap-1">
+                                            <h3 className="text-sm font-bold tracking-widest text-[var(--text-color)] uppercase">FIRSTGIFT</h3>
+                                            <p className="text-[10px] text-[var(--accent-color)] font-medium">Claim Your Mystery Piece</p>
+                                            <p className="text-[8px] opacity-40 leading-relaxed uppercase tracking-wider">Valid on your first luxury purchase</p>
+                                        </div>
+                                        <div className="flex items-center gap-2 text-green-600">
+                                            <CheckCircle2 size={16} />
+                                            <span className="text-[10px] font-bold uppercase tracking-widest">Active</span>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                                {total > 2499 && (
+                                    <CouponCard code="BLING30" rate={30} active={appliedCoupon === 'BLING30'} />
+                                )}
+                                {total > 999 && (
+                                    <CouponCard code="BLING5" rate={5} active={appliedCoupon === 'BLING5'} />
+                                )}
                             </div>
-                        )}
+                        </div>
 
                         {/* Order Summary */}
                         <div className="rounded-2xl border border-[var(--border-color)] bg-[var(--card-bg)] overflow-hidden">
