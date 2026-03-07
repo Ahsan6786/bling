@@ -158,9 +158,9 @@ const ProductClient = ({ product }: ProductClientProps) => {
                                 }}
                             />
 
-                            {/* Zoom Hint - Repositioned to bottom-right for clarity */}
+                            {/* Zoom Hint - Repositioned for optimal visibility */}
                             {!isZooming && (
-                                <div className="absolute bottom-10 right-10 p-4 rounded-full bg-[var(--accent-color)] text-white shadow-2xl z-20 hover:scale-110 transition-transform">
+                                <div className="absolute bottom-6 right-6 md:bottom-10 md:right-10 p-4 rounded-full bg-[var(--accent-color)] text-white shadow-2xl z-20 hover:scale-110 transition-transform">
                                     <ZoomIn size={22} />
                                 </div>
                             )}
