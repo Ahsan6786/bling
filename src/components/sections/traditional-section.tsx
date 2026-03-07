@@ -1,17 +1,21 @@
 "use client";
 
 import React, { useState } from "react";
-import { motion } from "framer-motion";
-import { ArrowRight, Share2, Check, Sparkles } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Share2, Check, Sparkles } from "lucide-react";
 import Link from "next/link";
 import { products } from "@/data/products";
 
-const Cabinet = () => {
-    // Select specific products for cabinet including "Velvet Breeze Studs" (id: 80)
-    const cabinetIds = ["earring-01", "21", "22", "80"];
-    const cabinetProducts = cabinetIds
+const TraditionalSection = () => {
+    // Product IDs for traditional section
+    const traditionalIds = ["52", "53", "earring-01", "35", "36", "37", "38", "39"];
+    const traditionalProducts = products.filter(p => traditionalIds.includes(p.id));
+
+    // Maintain the order of IDs
+    const sortedProducts = traditionalIds
         .map(id => products.find(p => p.id === id))
         .filter((p): p is (typeof products)[0] => p !== undefined);
+
     const [copiedId, setCopiedId] = useState<string | null>(null);
 
     const handleShare = (e: React.MouseEvent, slug: string, id: string) => {
@@ -33,60 +37,32 @@ const Cabinet = () => {
     };
 
     return (
-        <section id="cabinet" className="py-20 md:py-40 bg-[var(--bg-color)] overflow-hidden transition-all duration-1000">
+        <section id="traditional" className="py-20 md:py-40 bg-[var(--bg-color)] overflow-hidden transition-all duration-1000 border-t border-[var(--border-color)]">
             <div className="container mx-auto px-6 md:px-12">
-
-                <div className="flex flex-col items-center text-center gap-10 mb-20 md:mb-32 max-w-4xl mx-auto">
+                <div className="max-w-4xl mb-20 md:mb-32">
                     <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        whileInView={{ opacity: 1, y: 0 }}
+                        initial={{ opacity: 0, x: -30 }}
+                        whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                     >
-                        <h2 className="text-4xl md:text-8xl font-serif italic tracking-[0.05em] uppercase leading-[0.9] mb-12 text-[var(--text-color)]">
-                            Shine Bright
+                        <span className="text-[10px] md:text-[11px] uppercase tracking-[0.5em] font-bold text-[var(--accent-color)] mb-6 block">
+                            Our Heritage
+                        </span>
+                        <h2 className="text-4xl md:text-8xl font-serif italic tracking-[0.05em] uppercase leading-[0.9] text-[var(--text-color)]">
+                            Traditional <br /> <span className="not-italic font-sans font-extralight tracking-tight">Masterpieces</span>
                         </h2>
-
-                        <p className="text-gray-400 tracking-[0.05em] leading-relaxed font-light max-w-xl mx-auto">
-                            A curated glimpse into our finest artisanal creations.
-                        </p>
-                    </motion.div>
-
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1], delay: 0.3 }}
-                        className="relative"
-                    >
-                        {/* Pulsing glow ring behind the button */}
-                        <motion.div
-                            animate={{ scale: [1, 1.12, 1], opacity: [0.5, 0.15, 0.5] }}
-                            transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
-                            className="absolute inset-0 rounded-full bg-[var(--accent-color)] blur-lg"
-                        />
-                        <Link
-                            href="/collection"
-                            className="group relative inline-flex items-center justify-center gap-4 px-10 py-5 border border-black dark:border-[var(--accent-color)] rounded-full overflow-hidden transition-all duration-700 hover:shadow-xl hover:shadow-black/10 bg-black dark:bg-[var(--accent-color)]"
-                        >
-                            <Sparkles size={13} className="relative z-10 text-white group-hover:text-white transition-colors duration-700" />
-                            <span className="relative z-10 text-[10px] md:text-[11px] uppercase tracking-[0.5em] font-bold text-white group-hover:text-white transition-colors duration-700">
-                                Explore All Collection
-                            </span>
-                            <ArrowRight size={14} className="relative z-10 text-white group-hover:text-white group-hover:translate-x-1 transition-all duration-700" />
-                            <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-700 ease-[0.22,1,0.36,1]" />
-                        </Link>
                     </motion.div>
                 </div>
 
                 <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-3 md:gap-x-12 gap-y-8 md:gap-y-24">
-                    {cabinetProducts.map((product, idx) => (
+                    {sortedProducts.map((product, idx) => (
                         <motion.div
                             key={product.id}
                             initial={{ opacity: 0, y: 50 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true, margin: "-100px" }}
-                            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: idx * 0.15 }}
+                            transition={{ duration: 1, ease: [0.22, 1, 0.36, 1], delay: idx * 0.1 }}
                             className="group relative"
                         >
                             {/* Share Button */}
@@ -102,14 +78,9 @@ const Cabinet = () => {
                                     <img
                                         src={product.images[0]}
                                         alt={product.name}
-                                        className="w-full h-full object-contain p-1 md:p-1 transition-all duration-[1.5s] group-hover:scale-105 rounded-[1rem] md:rounded-[2.5rem]"
+                                        className="w-full h-full object-contain p-2 md:p-4 transition-all duration-[1.5s] group-hover:scale-105 rounded-[1rem] md:rounded-[2.5rem]"
                                     />
-
                                     <div className="absolute inset-0 bg-black/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
-
-                                    <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-[calc(100%-4rem)] py-4 bg-[var(--card-bg)] shadow-2xl rounded-full text-[9px] tracking-[0.4em] uppercase font-bold opacity-0 translate-y-6 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-700 hover:bg-[var(--accent-color)] hover:text-white dark:hover:text-black text-[var(--text-color)] flex justify-center items-center gap-2 hidden md:flex">
-                                        <span>View Details</span>
-                                    </div>
                                 </div>
                             </Link>
 
@@ -121,20 +92,19 @@ const Cabinet = () => {
                                     </h3>
                                 </Link>
                                 <div className="flex items-center justify-center gap-2 md:gap-4">
-                                    <span className="w-4 md:w-8 h-[1px] bg-[var(--border-color)] transition-luxury group-hover:w-12 group-hover:bg-[var(--accent-color)]" />
+                                    <span className="w-4 md:w-8 h-[1px] bg-[var(--border-color)]" />
                                     <span className="text-sm md:text-lg font-light tracking-widest text-[var(--text-color)]">
                                         {product.price === 0 ? "₹XX" : `₹${product.price.toLocaleString('en-IN')}`}
                                     </span>
-                                    <span className="w-4 md:w-8 h-[1px] bg-[var(--border-color)] transition-luxury group-hover:w-12 group-hover:bg-[var(--accent-color)]" />
+                                    <span className="w-4 md:w-8 h-[1px] bg-[var(--border-color)]" />
                                 </div>
                             </div>
                         </motion.div>
                     ))}
                 </div>
-
             </div>
         </section>
     );
 };
 
-export default Cabinet;
+export default TraditionalSection;

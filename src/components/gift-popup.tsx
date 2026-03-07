@@ -16,11 +16,11 @@ const GiftPopup = () => {
             setIsVisible(true);
         }, 10000);
 
-        // Re-show every 60 seconds if it was closed
+        // Re-show every 5 minutes if it was closed
         const repeatInterval = setInterval(() => {
-            console.log("1 minute check, ensuring gift popup visibility");
+            console.log("5 minute check, ensuring gift popup visibility");
             setIsVisible(true);
-        }, 60000);
+        }, 300000);
 
         return () => {
             clearTimeout(initialTimer);
