@@ -3,7 +3,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { getCurrentOccasion, Occasion } from "@/lib/occasions";
 import { motion, AnimatePresence } from "framer-motion";
-import { X, Sparkles } from "lucide-react";
+import { X, Sparkles, Wand2 } from "lucide-react";
 
 // Individual Particle Component
 const Particle = ({ type, color }: { type?: string, color: string }) => {
@@ -28,7 +28,7 @@ const Particle = ({ type, color }: { type?: string, color: string }) => {
             animate={{
                 y: "110vh",
                 x: `${randomX + (Math.random() * 10 - 5)}vw`,
-                opacity: [0, 0.25, 0.25, 0.25, 0], // Significantly lowered opacity as requested
+                opacity: [0, 0.25, 0.25, 0.25, 0],
                 rotate: 360
             }}
             transition={{
@@ -53,48 +53,93 @@ const Particle = ({ type, color }: { type?: string, color: string }) => {
 const ThemeManager = () => {
     const [activeOccasion, setActiveOccasion] = useState<Occasion | null>(null);
     const [showOverlay, setShowOverlay] = useState(false);
+    const [themeEnabled, setThemeEnabled] = useState(true);
 
     useEffect(() => {
         const occasion = getCurrentOccasion();
         if (occasion) {
             setActiveOccasion(occasion);
 
+            // Check if theme was manually disabled by user
+            const isThemeDisabled = localStorage.getItem("theme_occasion_disabled") === "true";
+            setThemeEnabled(!isThemeDisabled);
+
             // Check if shown in this session
             const hasSeenOverlay = sessionStorage.getItem(`seen_occasion_${occasion.name}`);
             if (!hasSeenOverlay) {
-                // Show fullscreen celebrate overlay after a short delay
+                // Show fullscreen celebrate overlay after 4 seconds as requested
                 const timer = setTimeout(() => {
                     setShowOverlay(true);
                     sessionStorage.setItem(`seen_occasion_${occasion.name}`, "true");
-                }, 1500);
+                }, 4000);
                 return () => clearTimeout(timer);
             }
 
-            // Inject theme specific CSS variables
-            const root = document.documentElement;
-            if (occasion.themeProps.accent) {
-                root.style.setProperty("--accent-color", occasion.themeProps.accent);
-            }
-            if (occasion.themeProps.accentSecondary) {
-                root.style.setProperty("--accent-secondary", occasion.themeProps.accentSecondary);
+            // Inject theme specific CSS variables if theme is enabled
+            if (!isThemeDisabled) {
+                const root = document.documentElement;
+                if (occasion.themeProps.accent) {
+                    root.style.setProperty("--accent-color", occasion.themeProps.accent);
+                }
+                if (occasion.themeProps.accentSecondary) {
+                    root.style.setProperty("--accent-secondary", occasion.themeProps.accentSecondary);
+                }
             }
         }
     }, []);
+
+    const toggleTheme = () => {
+        const newState = !themeEnabled;
+        setThemeEnabled(newState);
+        localStorage.setItem("theme_occasion_disabled", (!newState).toString());
+
+        // Reset or apply colors
+        const root = document.documentElement;
+        if (!newState) {
+            // Restore default colors (you might need to adjust these to your exact defaults)
+            root.style.setProperty("--accent-color", "#8B4A3A");
+            root.style.setProperty("--accent-secondary", "#fdfaf7");
+        } else if (activeOccasion) {
+            root.style.setProperty("--accent-color", activeOccasion.themeProps.accent);
+            root.style.setProperty("--accent-secondary", activeOccasion.themeProps.accentSecondary);
+        }
+    };
 
     if (!activeOccasion) return null;
 
     return (
         <>
-            {/* Immersive Particles - Lowered Opacity */}
-            <div className="fixed inset-0 pointer-events-none z-[40] overflow-hidden">
-                {[...Array(15)].map((_, i) => (
-                    <Particle
-                        key={i}
-                        type={activeOccasion.themeProps.particleType}
-                        color={activeOccasion.themeProps.accent}
-                    />
-                ))}
-            </div>
+            {/* Immersive Particles - Only if enabled */}
+            <AnimatePresence>
+                {themeEnabled && (
+                    <div className="fixed inset-0 pointer-events-none z-[40] overflow-hidden">
+                        {[...Array(15)].map((_, i) => (
+                            <Particle
+                                key={i}
+                                type={activeOccasion.themeProps.particleType}
+                                color={activeOccasion.themeProps.accent}
+                            />
+                        ))}
+                    </div>
+                )}
+            </AnimatePresence>
+
+            {/* Smart Theme Toggle Button - Floating at bottom left */}
+            {activeOccasion && (
+                <motion.button
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ delay: 5 }}
+                    onClick={toggleTheme}
+                    className={`fixed bottom-10 left-10 z-[100] w-12 h-12 rounded-full flex items-center justify-center backdrop-blur-xl border border-white/10 shadow-2xl transition-all duration-500 group ${themeEnabled ? 'bg-[var(--accent-color)] text-white' : 'bg-[var(--card-bg)] text-gray-400'}`}
+                    title={themeEnabled ? "Hide Celebration Effects" : "Show Celebration Effects"}
+                >
+                    <Wand2 size={18} className={`${themeEnabled ? 'animate-pulse' : ''}`} />
+                    <span className="absolute left-full ml-4 px-4 py-2 bg-black/80 text-white text-[9px] uppercase tracking-widest rounded-full opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap pointer-events-none">
+                        {themeEnabled ? "Magic Off" : "Magic On"}
+                    </span>
+                </motion.button>
+            )}
 
             {/* Premium Fullscreen Occasion Celebration */}
             <AnimatePresence>
@@ -171,10 +216,13 @@ const ThemeManager = () => {
                                     Explore Edition
                                 </button>
                                 <button
-                                    onClick={() => setShowOverlay(false)}
-                                    className="p-5 text-[var(--text-color)] opacity-40 hover:opacity-100 transition-opacity"
+                                    onClick={() => {
+                                        setShowOverlay(false);
+                                        toggleTheme();
+                                    }}
+                                    className="p-5 text-[var(--text-color)] border border-[var(--border-color)] rounded-full text-[10px] uppercase tracking-[0.2em] opacity-40 hover:opacity-100 transition-opacity flex items-center gap-3"
                                 >
-                                    <X size={24} />
+                                    Disable Effects
                                 </button>
                             </motion.div>
 
