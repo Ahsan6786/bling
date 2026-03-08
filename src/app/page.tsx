@@ -5,6 +5,7 @@ import GridFeatures from "@/components/sections/grid-features";
 import Cabinet from "@/components/sections/cabinet";
 import Story from "@/components/sections/story";
 import TraditionalSection from "@/components/sections/traditional-section";
+import WaistChainSection from "@/components/sections/waist-chain-section";
 import Reviews from "@/components/sections/reviews";
 import FAQ from "@/components/sections/faq";
 import CartSidebar from "@/components/cart-sidebar";
@@ -23,6 +24,7 @@ export default function Home() {
       <Cabinet />
       <Story />
       <TraditionalSection />
+      <WaistChainSection />
       <Reviews />
       <FAQ />
 

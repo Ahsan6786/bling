@@ -1212,13 +1212,13 @@ export const products: Product[] = [
         }
     },
     {
-        id: "pendant-04",
-        slug: "pen4-pendant",
-        name: "Imperial Grace Pendant",
+        id: "waist-chain-01",
+        slug: "imperial-grace-waist-chain",
+        name: "Imperial Grace Waist Chain",
         price: 999,
-        category: "Pendant/Necklace",
+        category: "Waist Chain",
         images: ["/images/pendant/pen4.png", "/images/pendant/pen4.1.png"],
-        description: "A centerpiece that embodies grace and strength through its interlocking solar patterns.",
+        description: "A centerpiece that embodies grace and strength through its interlocking solar patterns, designed to elegantly drape around the waist.",
         provenance: "Part of our Heritage collection, celebrating artisanal legacy.",
         specs: {
             metal: "Gold Toned Plating",
