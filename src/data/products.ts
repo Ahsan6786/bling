@@ -285,7 +285,7 @@ export const products: Product[] = [
         name: "Pure Radiance Studs",
         price: 1999,
         category: "Earrings",
-        images: ["/images/earrings/p.png", "/images/earrings/p.1.jpg"],
+        images: ["/images/earrings/p.png"],
         description: "Clean, elegant studs that bring a pure radiant glow to any ensemble.",
         provenance: "A minimalist masterpiece from our London atelier.",
         specs: {
@@ -317,7 +317,7 @@ export const products: Product[] = [
         name: "Radiant Sunburst Earrings",
         price: 2099,
         category: "Earrings",
-        images: ["/images/earrings/r.png", "/images/earrings/r.1.png"],
+        images: ["/images/earrings/r.png"],
         description: "Express your inner light with these stunning sunburst-inspired earrings.",
         provenance: "Inspired by the architectural motifs of royal Indian palaces.",
         specs: {
@@ -333,7 +333,7 @@ export const products: Product[] = [
         name: "Starlight Seraph Earrings",
         price: 2499,
         category: "Earrings",
-        images: ["/images/earrings/s.png", "/images/earrings/s.1.png"],
+        images: ["/images/earrings/s.png"],
         description: "Angelic forms meeting celestial brilliance in these unique statement pieces.",
         provenance: "Designed for those who seek beauty beyond the ordinary.",
         specs: {
@@ -1297,7 +1297,7 @@ export const products: Product[] = [
         name: "Rose Quartz Serenity Studs",
         price: 1499,
         category: "Earrings",
-        images: ["/images/earrings/we43.png", "/images/earrings/we43.1.png"],
+        images: ["/images/earrings/we43.png"],
         description: "Understated studs featuring the soft, calming pink of rose quartz-style crystals.",
         provenance: "Part of our Serenity collection, promoting inner peace and beauty.",
         specs: {
