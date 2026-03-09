@@ -17,21 +17,7 @@ export type Occasion = {
 };
 
 const occasions: Occasion[] = [
-    {
-        name: "Women's Day",
-        startMonth: 2, // March
-        startDate: 7,
-        endMonth: 2,
-        endDate: 9, // Let it run till 9th
-        themeProps: {
-            accent: "#D63484", // Vibrant Pink
-            accentSecondary: "#FF9BD2",
-            gradient: "linear-gradient(135deg, #D63484 0%, #FF9BD2 100%)",
-            greeting: "Empowering Beauty, Celebrating You.",
-            emoji: "🌸",
-            particleType: "flower"
-        }
-    },
+
     {
         name: "Valentine's Week",
         startMonth: 1, // Feb
